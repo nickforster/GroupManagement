@@ -1,15 +1,29 @@
 package ch.bzz.groupmanagement.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.List;
 
 /**
  * A group in the group Management
  */
 public class Group {
+    @JsonIgnore
+    private List<Student> students;
+    @JsonIgnore
+    private Teacher teacher;
+    private int id;
     private String title;
     private String description;
     private int graduationYear;
-    private List<Student> students;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getTitle() {
         return title;
@@ -41,5 +55,13 @@ public class Group {
 
     public void setStudents(List<Student> students) {
         this.students = students;
+    }
+
+    public Teacher getTeacher() {
+        return teacher;
+    }
+
+    public void setTeacher(Teacher teacher) {
+        this.teacher = teacher;
     }
 }
