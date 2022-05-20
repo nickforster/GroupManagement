@@ -1,0 +1,44 @@
+[
+	{
+		"id": 0,
+		"firstName": "Nick",
+		"lastName": "Forster",
+		"birthDate": "2005-04-22",
+		"phoneNumber": "0765422304"
+	},
+	{
+		"id": 1,
+		"firstName": "Nick",
+		"lastName": "Camenisch",
+		"birthDate": "2005-01-13",
+		"phoneNumber": "0773214567"
+	},
+	{
+		"id": 2,
+		"firstName": "Stefano",
+		"lastName": "Degiorgi",
+		"birthDate": "2005-08-27",
+		"phoneNumber": "0798947323"
+	},
+	{
+		"id": 3,
+		"firstName": "Nimai",
+		"lastName": "Leuenberger",
+		"birthDate": "2008-12-1",
+		"phoneNumber": "0789823412"
+	},
+	{
+		"id": 4,
+		"firstName": "Moritz",
+		"lastName": "Meier",
+		"birthDate": "2004-06-23",
+		"phoneNumber": "+41764411712"
+	},
+	{
+		"id": 5,
+		"firstName": "Janis",
+		"lastName": "Maier",
+		"birthDate": "2003-03-30",
+		"phoneNumber": "0795428829"
+	}
+]

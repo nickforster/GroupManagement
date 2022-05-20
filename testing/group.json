@@ -1,0 +1,20 @@
+[
+	{
+		"id": 0,
+		"title": "I2a",
+		"description": "Informatikklasse 2. Klasse A",
+		"graduationYear": "2023"
+	},
+	{
+		"id": 1,
+		"title": "G4b",
+		"description": "Gymnasiumsklasse 4. Klasse B",
+		"graduationYear": "2022"
+	},
+	{
+		"id": 2,
+		"title": "I1a",
+		"description": "Informatikklasse 1. Klasse A",
+		"graduationYear": "2024"
+	}
+]
