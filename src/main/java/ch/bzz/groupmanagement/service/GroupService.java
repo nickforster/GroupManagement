@@ -13,6 +13,10 @@ import java.util.List;
 
 @Path("group")
 public class GroupService {
+    /**
+     * lists all groups
+     * @return the value of the groupList
+     */
     @Path("list")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -25,6 +29,11 @@ public class GroupService {
         return response;
     }
 
+    /**
+     * reads a group by its id
+     * @param id
+     * @return group by its id
+     */
     @Path("read")
     @GET
     @Produces(MediaType.APPLICATION_JSON)

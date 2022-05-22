@@ -34,6 +34,12 @@ public class Config extends Application {
         return providers;
     }
 
+    /**
+     * Gets the value of a property
+     *
+     * @param property the key of the property to be read
+     * @return the value of the property
+     */
     public static String getProperty(String property) {
         if (Config.properties == null) {
             setProperties(new Properties());
@@ -44,6 +50,9 @@ public class Config extends Application {
         return value;
     }
 
+    /**
+     * reads the properties file
+     */
     private static void readProperties() {
         InputStream inputStream;
         try {

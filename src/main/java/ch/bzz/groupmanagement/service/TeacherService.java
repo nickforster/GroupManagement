@@ -13,6 +13,10 @@ import java.util.List;
 
 @Path("teacher")
 public class TeacherService {
+    /**
+     * lists all teachers
+     * @return the value of the teacherList
+     */
     @Path("list")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -25,6 +29,11 @@ public class TeacherService {
         return response;
     }
 
+    /**
+     * reads a teacher by its id
+     * @param id
+     * @return teacher by its id
+     */
     @Path("read")
     @GET
     @Produces(MediaType.APPLICATION_JSON)

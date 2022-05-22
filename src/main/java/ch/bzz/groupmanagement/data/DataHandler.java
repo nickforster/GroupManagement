@@ -44,10 +44,19 @@ public class DataHandler {
         return instance;
     }
 
+    /**
+     * reads all groups
+     * @return list of groups
+     */
     public List<Group> readAllGroups() {
         return getGroupList();
     }
 
+    /**
+     * reads a group by its id
+     * @param id
+     * @return the group (null=not found)
+     */
     public Group readGroupByID(int id) {
         Group group = null;
         for (Group entry : getGroupList()) {
@@ -58,10 +67,19 @@ public class DataHandler {
         return group;
     }
 
+    /**
+     * reads all students
+     * @return list of students
+     */
     public List<Student> readAllStudents() {
         return getStudentList();
     }
 
+    /**
+     * reads a student by its id
+     * @param id
+     * @return the student (null=not found)
+     */
     public Student readStudentByID(int id) {
         Student student = null;
         for (Student entry : getStudentList()) {
@@ -72,10 +90,19 @@ public class DataHandler {
         return student;
     }
 
+    /**
+     * reads all teachers
+     * @return list of teachers
+     */
     public List<Teacher> readAllTeachers() {
         return getTeacherList();
     }
 
+    /**
+     * reads a teacher by its id
+     * @param id
+     * @return the teacher (null=not found)
+     */
     public Teacher readTeacherByID(int id) {
         Teacher teacher = null;
         for (Teacher entry : getTeacherList()) {
@@ -86,6 +113,9 @@ public class DataHandler {
         return teacher;
     }
 
+    /**
+     * reads the groups from the JSON-file
+     */
     private void readGroupJSON() {
         try {
             String path = Config.getProperty("groupJSON");
@@ -102,6 +132,9 @@ public class DataHandler {
         }
     }
 
+    /**
+     * reads the students from the JSON-file
+     */
     private void readStudentJSON() {
         try {
             String path = Config.getProperty("studentJSON");
@@ -118,6 +151,9 @@ public class DataHandler {
         }
     }
 
+    /**
+     * reads the teachers from the JSON-file
+     */
     private void readTeacherJSON() {
         try {
             String path = Config.getProperty("teacherJSON");
@@ -134,26 +170,50 @@ public class DataHandler {
         }
     }
 
+    /**
+     * gets groupList
+     * @return value of groupList
+     */
     public List<Group> getGroupList() {
         return groupList;
     }
 
+    /**
+     * sets groupList
+     * @param groupList the value to set
+     */
     public void setGroupList(List<Group> groupList) {
         this.groupList = groupList;
     }
 
+    /**
+     * gets studentList
+     * @return value of studentList
+     */
     public List<Student> getStudentList() {
         return studentList;
     }
 
+    /**
+     * sets studentList
+     * @param studentList the value to set
+     */
     public void setStudentList(List<Student> studentList) {
         this.studentList = studentList;
     }
 
+    /**
+     * gets teacherList
+     * @return value of teacherList
+     */
     public List<Teacher> getTeacherList() {
         return teacherList;
     }
 
+    /**
+     * sets teacherList
+     * @param teacherList the value to set
+     */
     public void setTeacherList(List<Teacher> teacherList) {
         this.teacherList = teacherList;
     }
