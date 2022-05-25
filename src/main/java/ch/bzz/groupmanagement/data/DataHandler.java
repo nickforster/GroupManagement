@@ -24,6 +24,7 @@ public class DataHandler {
     private static List<Student> studentList;
     private static List<Teacher> teacherList;
     private static int groupId = 0;
+    private static int teacherId = 0;
 
     /**
      * private constructor defeats instantiation
@@ -277,10 +278,73 @@ public class DataHandler {
         }
     }
 
+    /**
+     * return an id that isn't used already
+     * @return
+     */
     public static int getGroupId() {
        while (readGroupByID(groupId) != null) {
            groupId++;
        }
        return groupId;
+    }
+
+    /**
+     * deletes a teacher by its id
+     * @param id the key
+     * @return success=true/false
+     */
+    public static boolean deleteTeacher(int id) {
+        Teacher teacher = readTeacherByID(id);
+        if (teacher != null) {
+            getTeacherList().remove(teacher);
+            writeTeacherJSON();
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * inserts a new teacher into the teacherList
+     * @param teacher the teacher to be saved
+     */
+    public static void insertTeacher(Teacher teacher) {
+        getTeacherList().add(teacher);
+        writeTeacherJSON();
+    }
+
+    /**
+     * updates a teacherList
+     */
+    public static void updateTeacher() {
+        writeTeacherJSON();
+    }
+
+    private static void writeTeacherJSON() {
+        ObjectMapper objectMapper = new ObjectMapper();
+        ObjectWriter objectWriter = objectMapper.writer(new DefaultPrettyPrinter());
+        FileOutputStream fileOutputStream = null;
+        Writer fileWriter;
+
+        String bookPath = Config.getProperty("teacherJSON");
+        try {
+            fileOutputStream = new FileOutputStream(bookPath);
+            fileWriter = new BufferedWriter(new OutputStreamWriter(fileOutputStream, StandardCharsets.UTF_8));
+            objectWriter.writeValue(fileWriter, getTeacherList());
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    /**
+     * return an id that isn't used already
+     * @return
+     */
+    public static int getTeacherId() {
+        while (readTeacherByID(teacherId) != null) {
+            teacherId++;
+        }
+        return teacherId;
     }
 }
