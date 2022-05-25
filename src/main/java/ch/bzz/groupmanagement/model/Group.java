@@ -1,5 +1,6 @@
 package ch.bzz.groupmanagement.model;
 
+import ch.bzz.groupmanagement.data.DataHandler;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.util.List;
@@ -90,6 +91,18 @@ public class Group {
      */
     public void setStudents(List<Student> students) {
         this.students = students;
+    }
+
+    /**
+     * creates a Teacher-Object without the groupList
+     * @param id the key
+     */
+    public void setTeacherID(int id) {
+        setTeacher(new Teacher());
+        Teacher teacher = DataHandler.readTeacherByID(id);
+        getTeacher().setId(id);
+        getTeacher().setFirstName(teacher.getFirstName());
+        getTeacher().setLastName(teacher.getLastName());
     }
 
     /**

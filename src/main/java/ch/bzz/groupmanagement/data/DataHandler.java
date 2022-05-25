@@ -4,9 +4,12 @@ import ch.bzz.groupmanagement.model.Group;
 import ch.bzz.groupmanagement.model.Student;
 import ch.bzz.groupmanagement.model.Teacher;
 import ch.bzz.groupmanagement.service.Config;
+import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
 
-import java.io.IOException;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -17,10 +20,10 @@ import java.util.List;
  * reads and writes the data in the JSON-files
  */
 public class DataHandler {
-    private static DataHandler instance = null;
-    private List<Group> groupList;
-    private List<Student> studentList;
-    private List<Teacher> teacherList;
+    private static List<Group> groupList;
+    private static List<Student> studentList;
+    private static List<Teacher> teacherList;
+    private static int groupId = 0;
 
     /**
      * private constructor defeats instantiation
@@ -35,20 +38,10 @@ public class DataHandler {
     }
 
     /**
-     * gets the only instance of this class
-     * @return
-     */
-    public static DataHandler getInstance() {
-        if (instance == null)
-            instance = new DataHandler();
-        return instance;
-    }
-
-    /**
      * reads all groups
      * @return list of groups
      */
-    public List<Group> readAllGroups() {
+    public static List<Group> readAllGroups() {
         return getGroupList();
     }
 
@@ -57,7 +50,7 @@ public class DataHandler {
      * @param id
      * @return the group (null=not found)
      */
-    public Group readGroupByID(int id) {
+    public static Group readGroupByID(int id) {
         Group group = null;
         for (Group entry : getGroupList()) {
             if (entry.getId() == id) {
@@ -71,7 +64,7 @@ public class DataHandler {
      * reads all students
      * @return list of students
      */
-    public List<Student> readAllStudents() {
+    public static List<Student> readAllStudents() {
         return getStudentList();
     }
 
@@ -80,7 +73,7 @@ public class DataHandler {
      * @param id
      * @return the student (null=not found)
      */
-    public Student readStudentByID(int id) {
+    public static Student readStudentByID(int id) {
         Student student = null;
         for (Student entry : getStudentList()) {
             if (entry.getId() == id) {
@@ -94,7 +87,7 @@ public class DataHandler {
      * reads all teachers
      * @return list of teachers
      */
-    public List<Teacher> readAllTeachers() {
+    public static List<Teacher> readAllTeachers() {
         return getTeacherList();
     }
 
@@ -103,7 +96,7 @@ public class DataHandler {
      * @param id
      * @return the teacher (null=not found)
      */
-    public Teacher readTeacherByID(int id) {
+    public static Teacher readTeacherByID(int id) {
         Teacher teacher = null;
         for (Teacher entry : getTeacherList()) {
             if (entry.getId() == id) {
@@ -116,7 +109,7 @@ public class DataHandler {
     /**
      * reads the groups from the JSON-file
      */
-    private void readGroupJSON() {
+    private static void readGroupJSON() {
         try {
             String path = Config.getProperty("groupJSON");
             byte[] jsonData = Files.readAllBytes(
@@ -135,7 +128,7 @@ public class DataHandler {
     /**
      * reads the students from the JSON-file
      */
-    private void readStudentJSON() {
+    private static void readStudentJSON() {
         try {
             String path = Config.getProperty("studentJSON");
             byte[] jsonData = Files.readAllBytes(
@@ -154,7 +147,7 @@ public class DataHandler {
     /**
      * reads the teachers from the JSON-file
      */
-    private void readTeacherJSON() {
+    private static void readTeacherJSON() {
         try {
             String path = Config.getProperty("teacherJSON");
             byte[] jsonData = Files.readAllBytes(
@@ -174,7 +167,12 @@ public class DataHandler {
      * gets groupList
      * @return value of groupList
      */
-    public List<Group> getGroupList() {
+    public static List<Group> getGroupList() {
+        if (groupList == null) {
+            setGroupList(new ArrayList<>());
+            readGroupJSON();
+        }
+
         return groupList;
     }
 
@@ -182,15 +180,20 @@ public class DataHandler {
      * sets groupList
      * @param groupList the value to set
      */
-    public void setGroupList(List<Group> groupList) {
-        this.groupList = groupList;
+    public static void setGroupList(List<Group> groupList) {
+        DataHandler.groupList = groupList;
     }
 
     /**
      * gets studentList
      * @return value of studentList
      */
-    public List<Student> getStudentList() {
+    public static List<Student> getStudentList() {
+        if (studentList == null) {
+            setStudentList(new ArrayList<>());
+            readStudentJSON();
+        }
+
         return studentList;
     }
 
@@ -198,15 +201,20 @@ public class DataHandler {
      * sets studentList
      * @param studentList the value to set
      */
-    public void setStudentList(List<Student> studentList) {
-        this.studentList = studentList;
+    public static void setStudentList(List<Student> studentList) {
+        DataHandler.studentList = studentList;
     }
 
     /**
      * gets teacherList
      * @return value of teacherList
      */
-    public List<Teacher> getTeacherList() {
+    public static List<Teacher> getTeacherList() {
+        if (teacherList == null) {
+            setTeacherList(new ArrayList<>());
+            readTeacherJSON();
+        }
+
         return teacherList;
     }
 
@@ -214,7 +222,65 @@ public class DataHandler {
      * sets teacherList
      * @param teacherList the value to set
      */
-    public void setTeacherList(List<Teacher> teacherList) {
-        this.teacherList = teacherList;
+    public static void setTeacherList(List<Teacher> teacherList) {
+        DataHandler.teacherList = teacherList;
+    }
+
+    /**
+     * deletes a group by its id
+     * @param id the key
+     * @return success=true/false
+     */
+    public static boolean deleteGroup(int id) {
+        Group group = readGroupByID(id);
+        if (group != null) {
+            getGroupList().remove(group);
+            writeGroupJSON();
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * inserts a new group into the groupList
+     * @param group the group to be saved
+     */
+    public static void insertGroup(Group group) {
+        getGroupList().add(group);
+        writeGroupJSON();
+    }
+
+    /**
+     * updates a groupList
+     */
+    public static void updateGroup() {
+        writeGroupJSON();
+    }
+
+    /**
+     * writes the groupList to the JSON-file
+     */
+    private static void writeGroupJSON() {
+        ObjectMapper objectMapper = new ObjectMapper();
+        ObjectWriter objectWriter = objectMapper.writer(new DefaultPrettyPrinter());
+        FileOutputStream fileOutputStream = null;
+        Writer fileWriter;
+
+        String bookPath = Config.getProperty("groupJSON");
+        try {
+            fileOutputStream = new FileOutputStream(bookPath);
+            fileWriter = new BufferedWriter(new OutputStreamWriter(fileOutputStream, StandardCharsets.UTF_8));
+            objectWriter.writeValue(fileWriter, getGroupList());
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public static int getGroupId() {
+       while (readGroupByID(groupId) != null) {
+           groupId++;
+       }
+       return groupId;
     }
 }
