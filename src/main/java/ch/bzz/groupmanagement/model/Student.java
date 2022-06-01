@@ -1,8 +1,13 @@
 package ch.bzz.groupmanagement.model;
 
+import ch.bzz.groupmanagement.data.DataHandler;
+import ch.bzz.groupmanagement.util.LocalDateDeserializer;
+import ch.bzz.groupmanagement.util.LocalDateSerializer;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 /**
  * A student in a group
@@ -13,7 +18,10 @@ public class Student {
     private int id;
     private String firstName;
     private String lastName;
-    private Date birthDate;
+
+    @JsonDeserialize(using = LocalDateDeserializer.class)
+    @JsonSerialize(using = LocalDateSerializer.class)
+    private LocalDate birthDate;
     private String phoneNumber;
 
     /**
@@ -65,14 +73,14 @@ public class Student {
      * gets the birthDate from the student-object
      * @return
      */
-    public Date getBirthDate() {
+    public LocalDate getBirthDate() {
         return birthDate;
     }
 
     /**
      * sets the birthDate of the student-object
      */
-    public void setBirthDate(Date birthDate) {
+    public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
     }
 
@@ -104,5 +112,19 @@ public class Student {
      */
     public void setGroup(Group group) {
         this.group = group;
+    }
+
+    /**
+     * creates a Group-Object without the studentList
+     * @param id the key
+     */
+    public void setGroupID(int id) {
+        setGroup(new Group());
+        Group group = DataHandler.readGroupByID(id);
+        getGroup().setId(id);
+        getGroup().setTitle(group.getTitle());
+        getGroup().setDescription(group.getDescription());
+        getGroup().setGraduationYear(group.getGraduationYear());
+        getGroup().setTeacherID(group.getId());
     }
 }

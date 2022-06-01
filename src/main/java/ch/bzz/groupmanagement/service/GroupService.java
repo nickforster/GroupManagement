@@ -6,9 +6,7 @@ import ch.bzz.groupmanagement.model.Group;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.math.BigDecimal;
 import java.util.List;
-import java.util.UUID;
 
 @Path("group")
 public class GroupService {
@@ -19,7 +17,7 @@ public class GroupService {
     @Path("list")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response listStudents () {
+    public Response listGroups () {
         List<Group> groupList = DataHandler.readAllGroups();
         Response response = Response
                 .status(200)
@@ -36,7 +34,7 @@ public class GroupService {
     @Path("read")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response readStudent (@QueryParam("id") int id) {
+    public Response readGroup (@QueryParam("id") int id) {
         Group group = DataHandler.readGroupByID(id);
         int httpStatus = 200;
         if (group == null) {
@@ -85,8 +83,6 @@ public class GroupService {
             @FormParam("description") String description,
             @FormParam("graduationYear") int graduationYear,
             @FormParam("teacherID") int teacherID
-
-
     ) {
         Group group = new Group();
 
@@ -114,12 +110,12 @@ public class GroupService {
     @PUT
     @Path("update")
     @Produces(MediaType.TEXT_PLAIN)
-    public Response updateBook(
+    public Response updateGroup(
             @FormParam("id") int id,
             @FormParam("title") String title,
             @FormParam("description") String description,
-            @FormParam("graduationYear") int graduationYear
-
+            @FormParam("graduationYear") int graduationYear,
+            @FormParam("teacherID") int teacherID
     ) {
         int httpStatus = 200;
         Group group = DataHandler.readGroupByID(id);
@@ -129,6 +125,7 @@ public class GroupService {
             group.setDescription(description);
             group.setGraduationYear(graduationYear);
             DataHandler.updateGroup();
+            group.setTeacherID(teacherID);
         } else {
             httpStatus = 410;
         }

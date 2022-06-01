@@ -25,6 +25,7 @@ public class DataHandler {
     private static List<Teacher> teacherList;
     private static int groupId = 0;
     private static int teacherId = 0;
+    private static int studentId = 0;
 
     /**
      * private constructor defeats instantiation
@@ -194,7 +195,6 @@ public class DataHandler {
             setStudentList(new ArrayList<>());
             readStudentJSON();
         }
-
         return studentList;
     }
 
@@ -321,6 +321,9 @@ public class DataHandler {
         writeTeacherJSON();
     }
 
+    /**
+     * writes the teacherList to the JSON-file
+     */
     private static void writeTeacherJSON() {
         ObjectMapper objectMapper = new ObjectMapper();
         ObjectWriter objectWriter = objectMapper.writer(new DefaultPrettyPrinter());
@@ -346,5 +349,66 @@ public class DataHandler {
             teacherId++;
         }
         return teacherId;
+    }
+
+    /**
+     * deletes a student by its id
+     * @param id the key
+     * @return success=true/false
+     */
+    public static boolean deleteStudent(int id) {
+        Student student = readStudentByID(id);
+        if (student != null) {
+            getStudentList().remove(student);
+            writeStudentJSON();
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * inserts a new student into the studentList
+     * @param student the student to be saved
+     */
+    public static void insertStudent(Student student) {
+        getStudentList().add(student);
+        writeStudentJSON();
+    }
+
+    /**
+     * updates a studentList
+     */
+    public static void updateStudent() {
+        writeStudentJSON();
+    }
+    /**
+     * writes the teacherList to the JSON-file
+     */
+    private static void writeStudentJSON() {
+        ObjectMapper objectMapper = new ObjectMapper();
+        ObjectWriter objectWriter = objectMapper.writer(new DefaultPrettyPrinter());
+        FileOutputStream fileOutputStream = null;
+        Writer fileWriter;
+
+        String bookPath = Config.getProperty("studentJSON");
+        try {
+            fileOutputStream = new FileOutputStream(bookPath);
+            fileWriter = new BufferedWriter(new OutputStreamWriter(fileOutputStream, StandardCharsets.UTF_8));
+            objectWriter.writeValue(fileWriter, getStudentList());
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    /**
+     * return an id that isn't used already
+     * @return
+     */
+    public static int getStudentId() {
+        while (readStudentByID(studentId) != null) {
+            studentId++;
+        }
+        return studentId;
     }
 }
