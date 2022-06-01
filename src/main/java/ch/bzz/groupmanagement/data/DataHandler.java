@@ -40,6 +40,15 @@ public class DataHandler {
     }
 
     /**
+     * initializes the lists
+     */
+    public static void initLists() {
+        DataHandler.setGroupList(null);
+        DataHandler.setStudentList(null);
+        DataHandler.setTeacherList(null);
+    }
+
+    /**
      * reads all groups
      * @return list of groups
      */
