@@ -7,6 +7,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
+import javax.validation.constraints.*;
+import javax.ws.rs.FormParam;
 import java.time.LocalDate;
 
 /**
@@ -15,13 +17,32 @@ import java.time.LocalDate;
 public class Student {
     @JsonIgnore
     private Group group;
+
     private int id;
+
+    @FormParam("groupID")
+    @Min(0)
+    private int groupID;
+
+    @FormParam("firstName")
+    @NotEmpty
+    @Size(min=2, max=40)
     private String firstName;
+
+    @FormParam("lastName")
+    @NotEmpty
+    @Size(min=2, max=40)
     private String lastName;
 
+    @FormParam("birthDate")
+    // make own class for validation
     @JsonDeserialize(using = LocalDateDeserializer.class)
     @JsonSerialize(using = LocalDateSerializer.class)
     private LocalDate birthDate;
+
+    @FormParam("phoneNumber")
+    @NotEmpty
+    @Pattern(regexp = "(\\b(0041|0)|\\B\\+41)(\\s?\\(0\\))?(\\s)?[1-9]{2}(\\s)?[0-9]{3}(\\s)?[0-9]{2}(\\s)?[0-9]{2}\\b")
     private String phoneNumber;
 
     /**
@@ -85,6 +106,14 @@ public class Student {
     }
 
     /**
+     * sets the birthDate of the student-object by String
+     */
+    @JsonIgnore
+    public void setBirthDate(String birthDate) {
+        this.birthDate = LocalDate.parse(birthDate);
+    }
+
+    /**
      * gets the phoneNumber from the student-object
      * @return
      */
@@ -126,5 +155,9 @@ public class Student {
         getGroup().setDescription(group.getDescription());
         getGroup().setGraduationYear(group.getGraduationYear());
         getGroup().setTeacherID(group.getId());
+    }
+
+    public int getGroupID() {
+        return groupID;
     }
 }

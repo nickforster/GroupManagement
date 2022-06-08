@@ -3,6 +3,7 @@ package ch.bzz.groupmanagement.service;
 import ch.bzz.groupmanagement.data.DataHandler;
 import ch.bzz.groupmanagement.model.Teacher;
 
+import javax.validation.Valid;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -38,7 +39,7 @@ public class TeacherService {
         Teacher teacher = DataHandler.readTeacherByID(id);
         int httpStatus = 200;
         if (teacher == null) {
-            httpStatus = 404;
+            httpStatus = 410;
         }
         Response response = Response
                 .status(httpStatus)
@@ -70,23 +71,16 @@ public class TeacherService {
 
     /**
      * creates a teacher with the parameters given
-     * @param firstName
-     * @param lastName
+     * @param teacher with all parameters
      * @return empty String
      */
     @POST
     @Path("create")
     @Produces(MediaType.TEXT_PLAIN)
     public Response createTeacher(
-            @FormParam("firstName") String firstName,
-            @FormParam("lastName") String lastName
+            @Valid @BeanParam Teacher teacher
     ) {
-        Teacher teacher = new Teacher();
-
         teacher.setId(DataHandler.getTeacherId());
-        teacher.setFirstName(firstName);
-        teacher.setLastName(lastName);
-
         DataHandler.insertTeacher(teacher);
         return Response
                 .status(200)
@@ -96,26 +90,23 @@ public class TeacherService {
 
     /**
      * updates a group by its id with the parameters given
+     * @param teacher with all parameters
      * @param id
-     * @param firstName
-     * @param lastName
      * @return empty String
      */
     @PUT
     @Path("update")
     @Produces(MediaType.TEXT_PLAIN)
     public Response updateTeacher(
-            @FormParam("id") int id,
-            @FormParam("firstName") String firstName,
-            @FormParam("lastName") String lastName
-
+            @Valid @BeanParam Teacher teacher,
+            @FormParam("id") int id
     ) {
         int httpStatus = 200;
-        Teacher teacher = DataHandler.readTeacherByID(id);
+        Teacher oldTeacher = DataHandler.readTeacherByID(id);
 
-        if (teacher != null) {
-            teacher.setFirstName(firstName);
-            teacher.setLastName(lastName);
+        if (oldTeacher != null) {
+            oldTeacher.setFirstName(teacher.getFirstName());
+            oldTeacher.setLastName(teacher.getLastName());
             DataHandler.updateTeacher();
         } else {
             httpStatus = 410;

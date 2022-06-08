@@ -2,6 +2,9 @@ package ch.bzz.groupmanagement.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
+import javax.ws.rs.FormParam;
 import java.util.List;
 
 /**
@@ -10,8 +13,17 @@ import java.util.List;
 public class Teacher {
     @JsonIgnore
     private List<Group> groups;
+
     private int id;
+
+    @FormParam("firstName")
+    @Size(min=2, max=40)
+    @NotEmpty
     private String firstName;
+
+    @FormParam("lastName")
+    @Size(min=2, max=40)
+    @NotEmpty
     private String lastName;
 
     /**

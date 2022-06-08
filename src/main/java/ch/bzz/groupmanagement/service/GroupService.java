@@ -2,7 +2,9 @@ package ch.bzz.groupmanagement.service;
 
 import ch.bzz.groupmanagement.data.DataHandler;
 import ch.bzz.groupmanagement.model.Group;
+import ch.bzz.groupmanagement.model.Teacher;
 
+import javax.validation.Valid;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -38,7 +40,7 @@ public class GroupService {
         Group group = DataHandler.readGroupByID(id);
         int httpStatus = 200;
         if (group == null) {
-            httpStatus = 404;
+            httpStatus = 410;
         }
         Response response = Response
                 .status(httpStatus)
@@ -70,62 +72,56 @@ public class GroupService {
 
     /**
      * creates a group with the parameters given
-     * @param title
-     * @param description
-     * @param graduationYear
+     * @param group with all parameters
      * @return empty String
      */
     @POST
     @Path("create")
     @Produces(MediaType.TEXT_PLAIN)
     public Response createGroup(
-            @FormParam("title") String title,
-            @FormParam("description") String description,
-            @FormParam("graduationYear") int graduationYear,
-            @FormParam("teacherID") int teacherID
+            @Valid @BeanParam Group group
     ) {
-        Group group = new Group();
+        int httpStatus = 200;
+        Teacher teacher = DataHandler.readTeacherByID(group.getTeacherID());
+        if (teacher != null) {
+            group.setId(DataHandler.getGroupId());
+            DataHandler.insertGroup(group);
+        } else {
+            httpStatus = 400;
+        }
 
-        group.setId(DataHandler.getGroupId());
-        group.setTitle(title);
-        group.setDescription(description);
-        group.setGraduationYear(graduationYear);
-        group.setTeacherID(teacherID);
 
-        DataHandler.insertGroup(group);
         return Response
-                .status(200)
+                .status(httpStatus)
                 .entity("")
                 .build();
     }
 
     /**
      * updates a group by its id with the parameters given
+     * @param group the group with all parameters
      * @param id
-     * @param title
-     * @param description
-     * @param graduationYear
      * @return empty String
      */
     @PUT
     @Path("update")
     @Produces(MediaType.TEXT_PLAIN)
     public Response updateGroup(
-            @FormParam("id") int id,
-            @FormParam("title") String title,
-            @FormParam("description") String description,
-            @FormParam("graduationYear") int graduationYear,
-            @FormParam("teacherID") int teacherID
+            @Valid @BeanParam Group group,
+            @FormParam("id") int id
     ) {
         int httpStatus = 200;
-        Group group = DataHandler.readGroupByID(id);
+        Group oldGroup = DataHandler.readGroupByID(id);
+        Teacher teacher = DataHandler.readTeacherByID(group.getTeacherID());
 
-        if (group != null) {
-            group.setTitle(title);
-            group.setDescription(description);
-            group.setGraduationYear(graduationYear);
+        if (teacher == null) {
+            httpStatus = 400;
+        } else if (oldGroup != null) {
+            oldGroup.setTitle(group.getTitle());
+            oldGroup.setDescription(group.getDescription());
+            oldGroup.setGraduationYear(group.getGraduationYear());
+            oldGroup.setTeacherID(group.getTeacherID());
             DataHandler.updateGroup();
-            group.setTeacherID(teacherID);
         } else {
             httpStatus = 410;
         }

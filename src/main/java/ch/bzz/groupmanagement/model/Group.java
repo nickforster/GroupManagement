@@ -3,6 +3,11 @@ package ch.bzz.groupmanagement.model;
 import ch.bzz.groupmanagement.data.DataHandler;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
+import javax.ws.rs.FormParam;
 import java.util.List;
 
 /**
@@ -11,11 +16,29 @@ import java.util.List;
 public class Group {
     @JsonIgnore
     private List<Student> students;
+
     @JsonIgnore
     private Teacher teacher;
+
     private int id;
+
+    @FormParam("teacherID")
+    @Min(0)
+    private int teacherID;
+
+    @FormParam("title")
+    @Size(min=2, max=20)
+    @NotEmpty
     private String title;
+
+    @FormParam("description")
+    @Size(min=5, max=200)
+    @NotEmpty
     private String description;
+
+    @FormParam("graduationYear")
+    @Min(2000)
+    @Max(2100)
     private int graduationYear;
 
     /**
@@ -118,5 +141,9 @@ public class Group {
      */
     public void setTeacher(Teacher teacher) {
         this.teacher = teacher;
+    }
+
+    public int getTeacherID() {
+        return teacherID;
     }
 }

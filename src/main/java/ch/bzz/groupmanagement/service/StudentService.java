@@ -4,13 +4,10 @@ import ch.bzz.groupmanagement.data.DataHandler;
 import ch.bzz.groupmanagement.model.Group;
 import ch.bzz.groupmanagement.model.Student;
 
+import javax.validation.Valid;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 @Path("student")
@@ -43,7 +40,7 @@ public class StudentService {
         Student student = DataHandler.readStudentByID(id);
         int httpStatus = 200;
         if (student == null) {
-            httpStatus = 404;
+            httpStatus = 410;
         }
         Response response = Response
                 .status(httpStatus)
@@ -75,71 +72,58 @@ public class StudentService {
 
     /**
      * creates a student with the parameters given
-     * @param firstName
-     * @param lastName
-     * @param birthDate
-     * @param phoneNumber
-     * @param groupID
+     * @param student with all parameters
      * @return empty String
      */
     @POST
     @Path("create")
     @Produces(MediaType.TEXT_PLAIN)
     public Response createStudent(
-            @FormParam("firstName") String firstName,
-            @FormParam("lastName") String lastName,
-            @FormParam("birthDate") String birthDate,
-            @FormParam("phoneNumber") String phoneNumber,
-            @FormParam("groupID") int groupID
+            @Valid @BeanParam Student student
     ) {
-        Student student = new Student();
+        int httpStatus = 200;
+        Group group = DataHandler.readGroupByID(student.getGroupID());
+        if (group != null) {
+            student.setId(DataHandler.getStudentId());
+            student.setGroupID(student.getGroupID());
+            DataHandler.insertStudent(student);
+        } else {
+            httpStatus = 400;
+        }
 
-        student.setId(DataHandler.getStudentId());
-        student.setFirstName(firstName);
-        student.setLastName(lastName);
-        student.setBirthDate(LocalDate.parse(birthDate));
-        student.setPhoneNumber(phoneNumber);
-        student.setGroupID(groupID);
-
-        DataHandler.insertStudent(student);
         return Response
-                .status(200)
+                .status(httpStatus)
                 .entity("")
                 .build();
     }
 
     /**
      * updates a student by its id with the parameters given
-     * @param id
-     * @param firstName
-     * @param lastName
-     * @param birthDate
-     * @param phoneNumber
-     * @param groupID
+     * @param student with all parameters
+     * @param id the id of the student to edit
      * @return empty String
      */
     @PUT
     @Path("update")
     @Produces(MediaType.TEXT_PLAIN)
-    public Response updateBook(
-            @FormParam("id") int id,
-            @FormParam("firstName") String firstName,
-            @FormParam("lastName") String lastName,
-            @FormParam("birthDate") String birthDate,
-            @FormParam("phoneNumber") String phoneNumber,
-            @FormParam("groupID") int groupID
-
+    public Response updateStudent(
+            @Valid @BeanParam Student student,
+            @FormParam("id") int id
     ) {
         int httpStatus = 200;
-        Student student = DataHandler.readStudentByID(id);
+        Student oldStudent = DataHandler.readStudentByID(id);
+        Group group = DataHandler.readGroupByID(student.getGroupID());
 
-        if (student != null) {
-            student.setFirstName(firstName);
-            student.setLastName(lastName);
-            student.setBirthDate(LocalDate.parse(birthDate));
-            student.setPhoneNumber(phoneNumber);
-            student.setGroupID(groupID);
+        if (group == null) {
+            httpStatus = 400;
+        } else if (oldStudent != null) {
+            oldStudent.setFirstName(student.getFirstName());
+            oldStudent.setLastName(student.getLastName());
+            oldStudent.setBirthDate(student.getBirthDate());
+            oldStudent.setPhoneNumber(student.getPhoneNumber());
+            oldStudent.setGroupID(student.getGroupID());
             DataHandler.updateStudent();
+
         } else {
             httpStatus = 410;
         }
