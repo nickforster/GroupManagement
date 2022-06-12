@@ -6,7 +6,2882 @@
 	},
 	"item": [
 		{
+			"name": "Student",
+			"item": [
+				{
+					"name": "1.1 list students",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function (){",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"validate response\", function (){",
+									"    pm.response.to.be.json;",
+									"    pm.expect(pm.response.text()).to.include(\"firstName\")",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/GroupManagement-1.0/resource/student/list",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"GroupManagement-1.0",
+								"resource",
+								"student",
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "1.2 read valid student",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function (){",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"validate response\", function (){",
+									"    pm.response.to.be.json;",
+									"    const responseJson = pm.response.json()",
+									"    pm.expect(responseJson.firstName).to.eql(\"Nick\")",
+									"    pm.expect(responseJson.lastName).to.eql(\"Forster\")",
+									"    pm.expect(responseJson.phoneNumber).to.eql(\"0765422304\")",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/GroupManagement-1.0/resource/student/read?id=0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"GroupManagement-1.0",
+								"resource",
+								"student",
+								"read"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "0"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "1.3 create valid student",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function (){",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "firstName",
+									"value": "Mister",
+									"type": "text"
+								},
+								{
+									"key": "lastName",
+									"value": "Muster",
+									"type": "text"
+								},
+								{
+									"key": "birthDate",
+									"value": "2006-09-28",
+									"type": "text"
+								},
+								{
+									"key": "phoneNumber",
+									"value": "079 799 79 79",
+									"type": "text"
+								},
+								{
+									"key": "groupID",
+									"value": "0",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/GroupManagement-1.0/resource/student/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"GroupManagement-1.0",
+								"resource",
+								"student",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "1.4 delete valid student",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function (){",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/GroupManagement-1.0/resource/student/delete?id=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"GroupManagement-1.0",
+								"resource",
+								"student",
+								"delete"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "1.5 update valid student",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function (){",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "id",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "firstName",
+									"value": "Marius",
+									"type": "text"
+								},
+								{
+									"key": "lastName",
+									"value": "Muster",
+									"type": "text"
+								},
+								{
+									"key": "groupID",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "birthDate",
+									"value": "2006-09-28",
+									"type": "text"
+								},
+								{
+									"key": "phoneNumber",
+									"value": "0765432100",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/GroupManagement-1.0/resource/student/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"GroupManagement-1.0",
+								"resource",
+								"student",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "2.1 read unknown student",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function (){",
+									"    pm.response.to.have.status(410);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/GroupManagement-1.0/resource/student/read?id=10000",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"GroupManagement-1.0",
+								"resource",
+								"student",
+								"read"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "10000"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "2.2 delete unknown student",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function (){",
+									"    pm.response.to.have.status(410);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/GroupManagement-1.0/resource/student/delete?id=1000",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"GroupManagement-1.0",
+								"resource",
+								"student",
+								"delete"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1000"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "2.3 update unknown student",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function (){",
+									"    pm.response.to.have.status(410);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "id",
+									"value": "10000",
+									"type": "text"
+								},
+								{
+									"key": "firstName",
+									"value": "Nick",
+									"type": "text"
+								},
+								{
+									"key": "lastName",
+									"value": "Forster",
+									"type": "text"
+								},
+								{
+									"key": "birthDate",
+									"value": "2005-04-21",
+									"type": "text"
+								},
+								{
+									"key": "phoneNumber",
+									"value": "0797997979",
+									"type": "text"
+								},
+								{
+									"key": "groupID",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/GroupManagement-1.0/resource/student/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"GroupManagement-1.0",
+								"resource",
+								"student",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "2.4 create student with unknown group",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function (){",
+									"    pm.response.to.have.status(400);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "firstName",
+									"value": "Mister",
+									"type": "text"
+								},
+								{
+									"key": "lastName",
+									"value": "Muster",
+									"type": "text"
+								},
+								{
+									"key": "birthDate",
+									"value": "2006-09-28",
+									"type": "text"
+								},
+								{
+									"key": "phoneNumber",
+									"value": "079 799 79 79",
+									"type": "text"
+								},
+								{
+									"key": "groupID",
+									"value": "10000",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/GroupManagement-1.0/resource/student/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"GroupManagement-1.0",
+								"resource",
+								"student",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "2.5 update student with unknown group",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function (){",
+									"    pm.response.to.have.status(400);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "firstName",
+									"value": "Mister",
+									"type": "text"
+								},
+								{
+									"key": "lastName",
+									"value": "Muster",
+									"type": "text"
+								},
+								{
+									"key": "birthDate",
+									"value": "2006-09-28",
+									"type": "text"
+								},
+								{
+									"key": "phoneNumber",
+									"value": "079 799 79 79",
+									"type": "text"
+								},
+								{
+									"key": "groupID",
+									"value": "10000",
+									"type": "text"
+								},
+								{
+									"key": "id",
+									"value": "2",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/GroupManagement-1.0/resource/student/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"GroupManagement-1.0",
+								"resource",
+								"student",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "3.1 create student with a to long firstName",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function (){",
+									"    pm.response.to.have.status(400);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "firstName",
+									"value": "Misterdsalköfalfjkasdlkfjadfkljaskdlfjafjöalfjköafj",
+									"type": "text"
+								},
+								{
+									"key": "lastName",
+									"value": "Muster",
+									"type": "text"
+								},
+								{
+									"key": "birthDate",
+									"value": "2006-09-28",
+									"type": "text"
+								},
+								{
+									"key": "phoneNumber",
+									"value": "079 799 79 79",
+									"type": "text"
+								},
+								{
+									"key": "groupID",
+									"value": "0",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/GroupManagement-1.0/resource/student/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"GroupManagement-1.0",
+								"resource",
+								"student",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "3.2 create student with a to short firstName",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function (){",
+									"    pm.response.to.have.status(400);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "firstName",
+									"value": "M",
+									"type": "text"
+								},
+								{
+									"key": "lastName",
+									"value": "Muster",
+									"type": "text"
+								},
+								{
+									"key": "birthDate",
+									"value": "2006-09-28",
+									"type": "text"
+								},
+								{
+									"key": "phoneNumber",
+									"value": "079 799 79 79",
+									"type": "text"
+								},
+								{
+									"key": "groupID",
+									"value": "0",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/GroupManagement-1.0/resource/student/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"GroupManagement-1.0",
+								"resource",
+								"student",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "3.3 create student with a to long lastName",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function (){",
+									"    pm.response.to.have.status(400);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "firstName",
+									"value": "Mister",
+									"type": "text"
+								},
+								{
+									"key": "lastName",
+									"value": "Musterdsalköfalfjkasdlkfjadfkljaskdlfjafjöalfjköafj",
+									"type": "text"
+								},
+								{
+									"key": "birthDate",
+									"value": "2006-09-28",
+									"type": "text"
+								},
+								{
+									"key": "phoneNumber",
+									"value": "079 799 79 79",
+									"type": "text"
+								},
+								{
+									"key": "groupID",
+									"value": "0",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/GroupManagement-1.0/resource/student/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"GroupManagement-1.0",
+								"resource",
+								"student",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "3.4 create student with a to short lastName",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function (){",
+									"    pm.response.to.have.status(400);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "firstName",
+									"value": "Mister",
+									"type": "text"
+								},
+								{
+									"key": "lastName",
+									"value": "M",
+									"type": "text"
+								},
+								{
+									"key": "birthDate",
+									"value": "2006-09-28",
+									"type": "text"
+								},
+								{
+									"key": "phoneNumber",
+									"value": "079 799 79 79",
+									"type": "text"
+								},
+								{
+									"key": "groupID",
+									"value": "0",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/GroupManagement-1.0/resource/student/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"GroupManagement-1.0",
+								"resource",
+								"student",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "3.5 create student with a to early birthdate",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function (){",
+									"    pm.response.to.have.status(400);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "firstName",
+									"value": "Mister",
+									"type": "text"
+								},
+								{
+									"key": "lastName",
+									"value": "Muster",
+									"type": "text"
+								},
+								{
+									"key": "birthDate",
+									"value": "1005-09-28",
+									"type": "text"
+								},
+								{
+									"key": "phoneNumber",
+									"value": "079 799 79 79",
+									"type": "text"
+								},
+								{
+									"key": "groupID",
+									"value": "0",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/GroupManagement-1.0/resource/student/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"GroupManagement-1.0",
+								"resource",
+								"student",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "3.6 create student with a birhtdate in the Future",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function (){",
+									"    pm.response.to.have.status(400);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "firstName",
+									"value": "Mister",
+									"type": "text"
+								},
+								{
+									"key": "lastName",
+									"value": "Muster",
+									"type": "text"
+								},
+								{
+									"key": "birthDate",
+									"value": "2105-09-28",
+									"type": "text"
+								},
+								{
+									"key": "phoneNumber",
+									"value": "079 799 79 79",
+									"type": "text"
+								},
+								{
+									"key": "groupID",
+									"value": "0",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/GroupManagement-1.0/resource/student/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"GroupManagement-1.0",
+								"resource",
+								"student",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "3.7 create student with a formally wrong birhtdate",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function (){",
+									"    pm.response.to.have.status(400);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "firstName",
+									"value": "Mister",
+									"type": "text"
+								},
+								{
+									"key": "lastName",
+									"value": "Muster",
+									"type": "text"
+								},
+								{
+									"key": "birthDate",
+									"value": "212126-0921-218-12",
+									"type": "text"
+								},
+								{
+									"key": "phoneNumber",
+									"value": "079 799 79 79",
+									"type": "text"
+								},
+								{
+									"key": "groupID",
+									"value": "0",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/GroupManagement-1.0/resource/student/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"GroupManagement-1.0",
+								"resource",
+								"student",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "3.8 create student with a formally wrong phoneNumber",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function (){",
+									"    pm.response.to.have.status(400);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "firstName",
+									"value": "Mister",
+									"type": "text"
+								},
+								{
+									"key": "lastName",
+									"value": "Muster",
+									"type": "text"
+								},
+								{
+									"key": "birthDate",
+									"value": "212126-0921-218-12",
+									"type": "text"
+								},
+								{
+									"key": "phoneNumber",
+									"value": "079 799 79 ",
+									"type": "text"
+								},
+								{
+									"key": "groupID",
+									"value": "0",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/GroupManagement-1.0/resource/student/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"GroupManagement-1.0",
+								"resource",
+								"student",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "3.9 create student with a to little groupID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function (){",
+									"    pm.response.to.have.status(400);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "firstName",
+									"value": "Mister",
+									"type": "text"
+								},
+								{
+									"key": "lastName",
+									"value": "Muster",
+									"type": "text"
+								},
+								{
+									"key": "birthDate",
+									"value": "212126-0921-218-12",
+									"type": "text"
+								},
+								{
+									"key": "phoneNumber",
+									"value": "079 799 79 79",
+									"type": "text"
+								},
+								{
+									"key": "groupID",
+									"value": "-10",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/GroupManagement-1.0/resource/student/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"GroupManagement-1.0",
+								"resource",
+								"student",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "3.10 create student with a formally wrong groupID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function (){",
+									"    pm.response.to.have.status(400);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "firstName",
+									"value": "Mister",
+									"type": "text"
+								},
+								{
+									"key": "lastName",
+									"value": "Muster",
+									"type": "text"
+								},
+								{
+									"key": "birthDate",
+									"value": "212126-0921-218-12",
+									"type": "text"
+								},
+								{
+									"key": "phoneNumber",
+									"value": "079 799 79 79",
+									"type": "text"
+								},
+								{
+									"key": "groupID",
+									"value": "aldsjfh",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/GroupManagement-1.0/resource/student/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"GroupManagement-1.0",
+								"resource",
+								"student",
+								"create"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Teacher",
+			"item": [
+				{
+					"name": "1.1 list teachers",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function (){",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"validate response\", function (){",
+									"    pm.response.to.be.json;",
+									"    pm.expect(pm.response.text()).to.include(\"firstName\")",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/GroupManagement-1.0/resource/teacher/list",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"GroupManagement-1.0",
+								"resource",
+								"teacher",
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "1.2 read valid teacher",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function (){",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"validate response\", function (){",
+									"    pm.response.to.be.json;",
+									"    const responseJson = pm.response.json()",
+									"    pm.expect(responseJson.firstName).to.eql(\"Markus\")",
+									"    pm.expect(responseJson.lastName).to.eql(\"Vöge\")",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/GroupManagement-1.0/resource/teacher/read?id=2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"GroupManagement-1.0",
+								"resource",
+								"teacher",
+								"read"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "1.3 create valid teacher",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function (){",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "firstName",
+									"value": "Daniel",
+									"type": "text"
+								},
+								{
+									"key": "lastName",
+									"value": "Fahrni",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/GroupManagement-1.0/resource/teacher/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"GroupManagement-1.0",
+								"resource",
+								"teacher",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "1.4 delete valid teacher",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function (){",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/GroupManagement-1.0/resource/teacher/delete?id=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"GroupManagement-1.0",
+								"resource",
+								"teacher",
+								"delete"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "1.5 update valid teacher",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function (){",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "id",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "firstName",
+									"value": "Markus",
+									"type": "text"
+								},
+								{
+									"key": "lastName",
+									"value": "Killer",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/GroupManagement-1.0/resource/teacher/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"GroupManagement-1.0",
+								"resource",
+								"teacher",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "2.1 read unknown teacher",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function (){",
+									"    pm.response.to.have.status(410);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/GroupManagement-1.0/resource/teacher/read?id=10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"GroupManagement-1.0",
+								"resource",
+								"teacher",
+								"read"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "2.2 delete unknown teacher",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function (){",
+									"    pm.response.to.have.status(410);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/GroupManagement-1.0/resource/teacher/delete?id=10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"GroupManagement-1.0",
+								"resource",
+								"teacher",
+								"delete"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "2.3 update unknown teacher",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function (){",
+									"    pm.response.to.have.status(410);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "id",
+									"value": "10",
+									"type": "text"
+								},
+								{
+									"key": "firstName",
+									"value": "Wili",
+									"type": "text"
+								},
+								{
+									"key": "lastName",
+									"value": "Wigger",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/GroupManagement-1.0/resource/teacher/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"GroupManagement-1.0",
+								"resource",
+								"teacher",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "3.1 create teacher with a to long firstName",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function (){",
+									"    pm.response.to.have.status(400);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "firstName",
+									"value": "Danielalsdhfakjsdfadskjfgdsfkjafkajdfdaksjgdlskjfgsadlfkj",
+									"type": "text"
+								},
+								{
+									"key": "lastName",
+									"value": "Fahrni",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/GroupManagement-1.0/resource/teacher/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"GroupManagement-1.0",
+								"resource",
+								"teacher",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "3.2 create teacher with a to short firstName",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function (){",
+									"    pm.response.to.have.status(400);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "firstName",
+									"value": "D",
+									"type": "text"
+								},
+								{
+									"key": "lastName",
+									"value": "Fahrni",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/GroupManagement-1.0/resource/teacher/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"GroupManagement-1.0",
+								"resource",
+								"teacher",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "3.3 create teacher with a to long lastName",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function (){",
+									"    pm.response.to.have.status(400);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "firstName",
+									"value": "Daniel",
+									"type": "text"
+								},
+								{
+									"key": "lastName",
+									"value": "Fahrnialkhfdjslahfdsljkfhaslkjfdhdaslfdsfhkajdshfaldjskhfa",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/GroupManagement-1.0/resource/teacher/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"GroupManagement-1.0",
+								"resource",
+								"teacher",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "3.4 create teacher with a to short lastName",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function (){",
+									"    pm.response.to.have.status(400);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "firstName",
+									"value": "Daniel",
+									"type": "text"
+								},
+								{
+									"key": "lastName",
+									"value": "F",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/GroupManagement-1.0/resource/teacher/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"GroupManagement-1.0",
+								"resource",
+								"teacher",
+								"create"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Group",
+			"item": [
+				{
+					"name": "1.1 list groups",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function (){",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"validate response\", function (){",
+									"    pm.response.to.be.json;",
+									"    pm.expect(pm.response.text()).to.include(\"title\")",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/GroupManagement-1.0/resource/group/list",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"GroupManagement-1.0",
+								"resource",
+								"group",
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "1.2 read valid group",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function (){",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"validate response\", function (){",
+									"    pm.response.to.be.json;",
+									"    const responseJson = pm.response.json()",
+									"    pm.expect(responseJson.title).to.eql(\"I1a\")",
+									"    pm.expect(responseJson.description).to.eql(\"Informatikklasse 1. Klasse A\")",
+									"    pm.expect(responseJson.graduationYear).to.eql(2024)",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/GroupManagement-1.0/resource/group/read?id=2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"GroupManagement-1.0",
+								"resource",
+								"group",
+								"read"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "1.3 create valid group",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function (){",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "title",
+									"value": "G3C",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Gymnasiumsklasse 3. Klasse C",
+									"type": "text"
+								},
+								{
+									"key": "graduationYear",
+									"value": "2023",
+									"type": "text"
+								},
+								{
+									"key": "teacherID",
+									"value": "0",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/GroupManagement-1.0/resource/group/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"GroupManagement-1.0",
+								"resource",
+								"group",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "1.4 delete valid group",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function (){",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/GroupManagement-1.0/resource/group/delete?id=2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"GroupManagement-1.0",
+								"resource",
+								"group",
+								"delete"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "1.5 update valid group",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function (){",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "title",
+									"value": "G2D",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Gymnasiumsklasse 2. Klasse D",
+									"type": "text"
+								},
+								{
+									"key": "graduationYear",
+									"value": "2024",
+									"type": "text"
+								},
+								{
+									"key": "teacherID",
+									"value": "0",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/GroupManagement-1.0/resource/group/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"GroupManagement-1.0",
+								"resource",
+								"group",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "2.1 read unknown group",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function (){",
+									"    pm.response.to.have.status(410);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/GroupManagement-1.0/resource/group/read?id=10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"GroupManagement-1.0",
+								"resource",
+								"group",
+								"read"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "2.2 delete unknown group",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function (){",
+									"    pm.response.to.have.status(410);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/GroupManagement-1.0/resource/group/delete?id=10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"GroupManagement-1.0",
+								"resource",
+								"group",
+								"delete"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "2.3 update unknown group",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function (){",
+									"    pm.response.to.have.status(410);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "id",
+									"value": "1000",
+									"type": "text"
+								},
+								{
+									"key": "title",
+									"value": "I3b",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "3. Informatikklasse B ",
+									"type": "text"
+								},
+								{
+									"key": "graduationYear",
+									"value": "2022",
+									"type": "text"
+								},
+								{
+									"key": "teacherID",
+									"value": "0",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/GroupManagement-1.0/resource/group/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"GroupManagement-1.0",
+								"resource",
+								"group",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "2.4 create group with unknown teacher",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function (){",
+									"    pm.response.to.have.status(400);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "title",
+									"value": "G3C",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Gymnasiumsklasse 3. Klasse C",
+									"type": "text"
+								},
+								{
+									"key": "graduationYear",
+									"value": "2023",
+									"type": "text"
+								},
+								{
+									"key": "teacherID",
+									"value": "10000",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/GroupManagement-1.0/resource/group/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"GroupManagement-1.0",
+								"resource",
+								"group",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "2.5 update group with unknown teacher",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function (){",
+									"    pm.response.to.have.status(400);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "title",
+									"value": "G3C",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Gymnasiumsklasse 3. Klasse C",
+									"type": "text"
+								},
+								{
+									"key": "graduationYear",
+									"value": "2023",
+									"type": "text"
+								},
+								{
+									"key": "teacherID",
+									"value": "10000",
+									"type": "text"
+								},
+								{
+									"key": "id",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/GroupManagement-1.0/resource/group/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"GroupManagement-1.0",
+								"resource",
+								"group",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "3.1 create group with a to short title",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function (){",
+									"    pm.response.to.have.status(400);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "title",
+									"value": "G",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Gymnasiumsklasse 3. Klasse C",
+									"type": "text"
+								},
+								{
+									"key": "graduationYear",
+									"value": "2023",
+									"type": "text"
+								},
+								{
+									"key": "teacherID",
+									"value": "0",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/GroupManagement-1.0/resource/group/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"GroupManagement-1.0",
+								"resource",
+								"group",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "3.2 create group with a to long title",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function (){",
+									"    pm.response.to.have.status(400);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "title",
+									"value": "G3Casjklhasjkdhlsajkdhasljkhds",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Gymnasiumsklasse 3. Klasse C",
+									"type": "text"
+								},
+								{
+									"key": "graduationYear",
+									"value": "2023",
+									"type": "text"
+								},
+								{
+									"key": "teacherID",
+									"value": "0",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/GroupManagement-1.0/resource/group/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"GroupManagement-1.0",
+								"resource",
+								"group",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "3.3 create group with a to short description",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function (){",
+									"    pm.response.to.have.status(400);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "title",
+									"value": "G3C",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "A",
+									"type": "text"
+								},
+								{
+									"key": "graduationYear",
+									"value": "2023",
+									"type": "text"
+								},
+								{
+									"key": "teacherID",
+									"value": "0",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/GroupManagement-1.0/resource/group/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"GroupManagement-1.0",
+								"resource",
+								"group",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "3.4 create group with a to long description",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function (){",
+									"    pm.response.to.have.status(400);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "title",
+									"value": "G3C",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Gymnasiumsklasse 3. Klasse C sdkjfkldaöfjdsfjdasfjdksfhdjkslhakjfhdjalkfhdskjfhadjksfhadjkfhdasaskdfljdlkfösfaöfjaödlksfjadkfldsklffdakfdjlafkadfhalkjfdakjdlfhdsjklafhdjklfahdsljkfhadsljkfhdskjfhdaskfjlsdlafhdksljafhdsf",
+									"type": "text"
+								},
+								{
+									"key": "graduationYear",
+									"value": "2023",
+									"type": "text"
+								},
+								{
+									"key": "teacherID",
+									"value": "0",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/GroupManagement-1.0/resource/group/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"GroupManagement-1.0",
+								"resource",
+								"group",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "3.5 create group with a to small graduationYear",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function (){",
+									"    pm.response.to.have.status(400);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "title",
+									"value": "G3C",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Gymnasiumsklasse 3. Klasse C",
+									"type": "text"
+								},
+								{
+									"key": "graduationYear",
+									"value": "1923",
+									"type": "text"
+								},
+								{
+									"key": "teacherID",
+									"value": "0",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/GroupManagement-1.0/resource/group/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"GroupManagement-1.0",
+								"resource",
+								"group",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "3.6 create group with a to big graduationYear",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function (){",
+									"    pm.response.to.have.status(400);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "title",
+									"value": "G3C",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Gymnasiumsklasse 3. Klasse C",
+									"type": "text"
+								},
+								{
+									"key": "graduationYear",
+									"value": "2123",
+									"type": "text"
+								},
+								{
+									"key": "teacherID",
+									"value": "0",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/GroupManagement-1.0/resource/group/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"GroupManagement-1.0",
+								"resource",
+								"group",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "3.7 create group with a formally wrong graduationYear",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function (){",
+									"    pm.response.to.have.status(400);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "title",
+									"value": "G3C",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Gymnasiumsklasse 3. Klasse C",
+									"type": "text"
+								},
+								{
+									"key": "graduationYear",
+									"value": "jksdafbdsmfnadlkfa",
+									"type": "text"
+								},
+								{
+									"key": "teacherID",
+									"value": "0",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/GroupManagement-1.0/resource/group/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"GroupManagement-1.0",
+								"resource",
+								"group",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "3.8 create group with a to small teacherID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function (){",
+									"    pm.response.to.have.status(400);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "title",
+									"value": "G3C",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Gymnasiumsklasse 3. Klasse C",
+									"type": "text"
+								},
+								{
+									"key": "graduationYear",
+									"value": "2023",
+									"type": "text"
+								},
+								{
+									"key": "teacherID",
+									"value": "-10",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/GroupManagement-1.0/resource/group/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"GroupManagement-1.0",
+								"resource",
+								"group",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "3.9 create group with a formally wrong teacherID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function (){",
+									"    pm.response.to.have.status(400);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "title",
+									"value": "G3C",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Gymnasiumsklasse 3. Klasse C",
+									"type": "text"
+								},
+								{
+									"key": "graduationYear",
+									"value": "2023",
+									"type": "text"
+								},
+								{
+									"key": "teacherID",
+									"value": "sjdlfka",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/GroupManagement-1.0/resource/group/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"GroupManagement-1.0",
+								"resource",
+								"group",
+								"create"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "0.1 Testservice",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function (){",
+							"    pm.response.to.have.status(200);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -28,34 +2903,25 @@
 			"response": []
 		},
 		{
-			"name": "1.1 list students",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8080/GroupManagement-1.0/resource/student/list",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"GroupManagement-1.0",
-						"resource",
-						"student",
-						"list"
-					]
+			"name": "0.2 restore",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function (){",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
 				}
-			},
-			"response": []
-		},
-		{
-			"name": "1.2 read valid student",
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/GroupManagement-1.0/resource/student/read?id=0",
+					"raw": "http://localhost:8080/GroupManagement-1.0/resource/test/restore",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -64,198 +2930,8 @@
 					"path": [
 						"GroupManagement-1.0",
 						"resource",
-						"student",
-						"read"
-					],
-					"query": [
-						{
-							"key": "id",
-							"value": "0"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "1.3 read not valid student",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8080/GroupManagement-1.0/resource/student/read?id=10",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"GroupManagement-1.0",
-						"resource",
-						"student",
-						"read"
-					],
-					"query": [
-						{
-							"key": "id",
-							"value": "10"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "1.4 list groups",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8080/GroupManagement-1.0/resource/group/list",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"GroupManagement-1.0",
-						"resource",
-						"group",
-						"list"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "1.5 read valid group",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8080/GroupManagement-1.0/resource/group/read?id=1",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"GroupManagement-1.0",
-						"resource",
-						"group",
-						"read"
-					],
-					"query": [
-						{
-							"key": "id",
-							"value": "1"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "1.6 read not valid group",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8080/GroupManagement-1.0/resource/group/read?id=10",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"GroupManagement-1.0",
-						"resource",
-						"group",
-						"read"
-					],
-					"query": [
-						{
-							"key": "id",
-							"value": "10"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "1.7 list teachers",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8080/GroupManagement-1.0/resource/teacher/list",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"GroupManagement-1.0",
-						"resource",
-						"teacher",
-						"list"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "1.8 read valid teacher",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8080/GroupManagement-1.0/resource/teacher/read?id=2",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"GroupManagement-1.0",
-						"resource",
-						"teacher",
-						"read"
-					],
-					"query": [
-						{
-							"key": "id",
-							"value": "2"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "1.9 read not valid teacher",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8080/GroupManagement-1.0/resource/teacher/read?id=10",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"GroupManagement-1.0",
-						"resource",
-						"teacher",
-						"read"
-					],
-					"query": [
-						{
-							"key": "id",
-							"value": "10"
-						}
+						"test",
+						"restore"
 					]
 				}
 			},
