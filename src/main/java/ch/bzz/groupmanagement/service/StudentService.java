@@ -3,6 +3,7 @@ package ch.bzz.groupmanagement.service;
 import ch.bzz.groupmanagement.data.DataHandler;
 import ch.bzz.groupmanagement.model.Group;
 import ch.bzz.groupmanagement.model.Student;
+import ch.bzz.groupmanagement.util.BirthDate;
 
 import javax.validation.Valid;
 import javax.ws.rs.*;
@@ -80,17 +81,18 @@ public class StudentService {
     @Produces(MediaType.TEXT_PLAIN)
     public Response createStudent(
             @Valid @BeanParam Student student,
-            @FormParam("birthDate") String birthDate
+            @FormParam("birthDate") @BirthDate(value=1900) String birthDate
     ) {
         int httpStatus = 200;
         Group group = DataHandler.readGroupByID(student.getGroupID());
-        if (group != null) {
+
+        if (group == null || !student.setBirthDate(birthDate)) {
+            httpStatus = 400;
+        } else {
             student.setId(DataHandler.getStudentId());
             student.setGroupID(student.getGroupID());
             student.setBirthDate(birthDate);
             DataHandler.insertStudent(student);
-        } else {
-            httpStatus = 400;
         }
 
         return Response
@@ -111,25 +113,23 @@ public class StudentService {
     public Response updateStudent(
             @Valid @BeanParam Student student,
             @FormParam("id") int id,
-            @FormParam("birthDate") String birthDate
+            @FormParam("birthDate") @BirthDate(value=1900) String birthDate
     ) {
         int httpStatus = 200;
         Student oldStudent = DataHandler.readStudentByID(id);
         Group group = DataHandler.readGroupByID(student.getGroupID());
 
-        if (group == null) {
+        if (oldStudent == null) {
+            httpStatus = 410;
+        } else if (group == null || !oldStudent.setBirthDate(birthDate)){
             httpStatus = 400;
-        } else if (oldStudent != null) {
+        } else {
             oldStudent.setFirstName(student.getFirstName());
             oldStudent.setLastName(student.getLastName());
             oldStudent.setBirthDate(student.getBirthDate());
             oldStudent.setPhoneNumber(student.getPhoneNumber());
             oldStudent.setGroupID(student.getGroupID());
-            oldStudent.setBirthDate(birthDate);
             DataHandler.updateStudent();
-
-        } else {
-            httpStatus = 410;
         }
 
         return Response

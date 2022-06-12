@@ -1,6 +1,7 @@
 package ch.bzz.groupmanagement.model;
 
 import ch.bzz.groupmanagement.data.DataHandler;
+import ch.bzz.groupmanagement.util.BirthDate;
 import ch.bzz.groupmanagement.util.LocalDateDeserializer;
 import ch.bzz.groupmanagement.util.LocalDateSerializer;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -107,10 +108,16 @@ public class Student {
 
     /**
      * sets the birthDate of the student-object by String
+     * @return true/false if is was successful or not
      */
     @JsonIgnore
-    public void setBirthDate(String birthDate) {
-        this.birthDate = LocalDate.parse(birthDate);
+    public boolean setBirthDate(String birthDate) {
+        try {
+            this.birthDate = LocalDate.parse(birthDate);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     /**
