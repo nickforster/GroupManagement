@@ -79,13 +79,15 @@ public class StudentService {
     @Path("create")
     @Produces(MediaType.TEXT_PLAIN)
     public Response createStudent(
-            @Valid @BeanParam Student student
+            @Valid @BeanParam Student student,
+            @FormParam("birthDate") String birthDate
     ) {
         int httpStatus = 200;
         Group group = DataHandler.readGroupByID(student.getGroupID());
         if (group != null) {
             student.setId(DataHandler.getStudentId());
             student.setGroupID(student.getGroupID());
+            student.setBirthDate(birthDate);
             DataHandler.insertStudent(student);
         } else {
             httpStatus = 400;
@@ -108,7 +110,8 @@ public class StudentService {
     @Produces(MediaType.TEXT_PLAIN)
     public Response updateStudent(
             @Valid @BeanParam Student student,
-            @FormParam("id") int id
+            @FormParam("id") int id,
+            @FormParam("birthDate") String birthDate
     ) {
         int httpStatus = 200;
         Student oldStudent = DataHandler.readStudentByID(id);
@@ -122,6 +125,7 @@ public class StudentService {
             oldStudent.setBirthDate(student.getBirthDate());
             oldStudent.setPhoneNumber(student.getPhoneNumber());
             oldStudent.setGroupID(student.getGroupID());
+            oldStudent.setBirthDate(birthDate);
             DataHandler.updateStudent();
 
         } else {

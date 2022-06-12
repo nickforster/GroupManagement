@@ -34,7 +34,7 @@ public class Student {
     @Size(min=2, max=40)
     private String lastName;
 
-    @FormParam("birthDate")
+    //@FormParam("birthDate")
     // make own class for validation
     @JsonDeserialize(using = LocalDateDeserializer.class)
     @JsonSerialize(using = LocalDateSerializer.class)
