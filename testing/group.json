@@ -3,18 +3,21 @@
 		"id": 0,
 		"title": "I2a",
 		"description": "Informatikklasse 2. Klasse A",
-		"graduationYear": "2023"
+		"graduationYear": "2023",
+        "teacherID": 2
 	},
 	{
 		"id": 1,
 		"title": "G4b",
 		"description": "Gymnasiumsklasse 4. Klasse B",
-		"graduationYear": "2022"
+		"graduationYear": "2022",
+        "teacherID": 0
 	},
 	{
 		"id": 2,
 		"title": "I1a",
 		"description": "Informatikklasse 1. Klasse A",
-		"graduationYear": "2024"
+		"graduationYear": "2024",
+        "teacherID": 1
 	}
 ]
