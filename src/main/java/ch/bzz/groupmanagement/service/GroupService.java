@@ -14,56 +14,78 @@ import java.util.List;
 public class GroupService {
     /**
      * lists all groups
+     * @param userRole
      * @return the value of the groupList
      */
     @Path("list")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response listGroups () {
-        List<Group> groupList = DataHandler.readAllGroups();
-        Response response = Response
-                .status(200)
+    public Response listGroups (
+            @CookieParam("userRole") String userRole
+    ) {
+        List<Group> groupList = null;
+        int httpStatus = 200;
+        if (userRole == null || userRole.equals("guest")) {
+            httpStatus = 403;
+        } else {
+            groupList = DataHandler.readAllGroups();
+        }
+        return Response
+                .status(httpStatus)
                 .entity(groupList)
                 .build();
-        return response;
     }
 
     /**
      * reads a group by its id
      * @param id
+     * @param userRole
      * @return group by its id
      */
     @Path("read")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response readGroup (@QueryParam("id") int id) {
-        Group group = DataHandler.readGroupByID(id);
+    public Response readGroup (
+            @QueryParam("id") int id,
+            @CookieParam("userRole") String userRole
+    ) {
+        Group group = null;
         int httpStatus = 200;
-        if (group == null) {
-            httpStatus = 410;
+        if (userRole == null || userRole.equals("guest")) {
+            httpStatus = 403;
+        } else {
+            group = DataHandler.readGroupByID(id);
+            if (group == null) {
+                httpStatus = 410;
+            }
         }
-        Response response = Response
+
+        return Response
                 .status(httpStatus)
                 .entity(group)
                 .build();
-        return response;
     }
 
     /**
      * deletes a group by its id
      * @param id
+     * @param userRole
      * @return empty String
      */
     @DELETE
     @Path("delete")
     @Produces(MediaType.TEXT_PLAIN)
     public Response deleteGroup(
-            @QueryParam("id") int id
+            @QueryParam("id") int id,
+            @CookieParam("userRole") String userRole
     ) {
         int httpStatus = 200;
-        if (!DataHandler.deleteGroup(id)) {
+        if (userRole == null || userRole.equals("guest") || userRole.equals("user")) {
+            httpStatus = 403;
+        } else if (!DataHandler.deleteGroup(id)){
             httpStatus = 410;
         }
+
         return Response
                 .status(httpStatus)
                 .entity("")
@@ -73,23 +95,28 @@ public class GroupService {
     /**
      * creates a group with the parameters given
      * @param group with all parameters
+     * @param userRole
      * @return empty String
      */
     @POST
     @Path("create")
     @Produces(MediaType.TEXT_PLAIN)
     public Response createGroup(
-            @Valid @BeanParam Group group
+            @Valid @BeanParam Group group,
+            @CookieParam("userRole") String userRole
     ) {
         int httpStatus = 200;
-        Teacher teacher = DataHandler.readTeacherByID(group.getTeacherID());
-        if (teacher != null) {
-            group.setId(DataHandler.getGroupId());
-            DataHandler.insertGroup(group);
+        if (userRole == null || userRole.equals("guest") || userRole.equals("user")) {
+            httpStatus = 403;
         } else {
-            httpStatus = 400;
+            Teacher teacher = DataHandler.readTeacherByID(group.getTeacherID());
+            if (teacher != null) {
+                group.setId(DataHandler.getGroupId());
+                DataHandler.insertGroup(group);
+            } else {
+                httpStatus = 400;
+            }
         }
-
 
         return Response
                 .status(httpStatus)
@@ -101,6 +128,7 @@ public class GroupService {
      * updates a group by its id with the parameters given
      * @param group the group with all parameters
      * @param id
+     * @param userRole
      * @return empty String
      */
     @PUT
@@ -108,23 +136,29 @@ public class GroupService {
     @Produces(MediaType.TEXT_PLAIN)
     public Response updateGroup(
             @Valid @BeanParam Group group,
-            @FormParam("id") int id
+            @FormParam("id") int id,
+            @CookieParam("userRole") String userRole
     ) {
         int httpStatus = 200;
-        Group oldGroup = DataHandler.readGroupByID(id);
-        Teacher teacher = DataHandler.readTeacherByID(group.getTeacherID());
-
-        if (teacher == null) {
-            httpStatus = 400;
-        } else if (oldGroup != null) {
-            oldGroup.setTitle(group.getTitle());
-            oldGroup.setDescription(group.getDescription());
-            oldGroup.setGraduationYear(group.getGraduationYear());
-            oldGroup.setTeacherID(group.getTeacherID());
-            DataHandler.updateGroup();
+        if (userRole == null || userRole.equals("guest") || userRole.equals("user")) {
+            httpStatus = 403;
         } else {
-            httpStatus = 410;
+            Group oldGroup = DataHandler.readGroupByID(id);
+            Teacher teacher = DataHandler.readTeacherByID(group.getTeacherID());
+
+            if (teacher == null) {
+                httpStatus = 400;
+            } else if (oldGroup != null) {
+                oldGroup.setTitle(group.getTitle());
+                oldGroup.setDescription(group.getDescription());
+                oldGroup.setGraduationYear(group.getGraduationYear());
+                oldGroup.setTeacherID(group.getTeacherID());
+                DataHandler.updateGroup();
+            } else {
+                httpStatus = 410;
+            }
         }
+
 
         return Response
                 .status(httpStatus)
