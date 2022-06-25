@@ -126,6 +126,7 @@ public class Group {
         getTeacher().setId(id);
         getTeacher().setFirstName(teacher.getFirstName());
         getTeacher().setLastName(teacher.getLastName());
+        teacherID = id;
     }
 
     /**

@@ -112,6 +112,7 @@ public class GroupService {
             Teacher teacher = DataHandler.readTeacherByID(group.getTeacherID());
             if (teacher != null) {
                 group.setId(DataHandler.getGroupId());
+                group.setTeacherID(group.getTeacherID());
                 DataHandler.insertGroup(group);
             } else {
                 httpStatus = 400;

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Group</title>
+    <script src="js/groupEdit.js"></script>
+    <script src="js/util.js"></script>
+</head>
+<body>
+<nav id="nav">
+    <span><a href="./groupList.html">Groups</a></span>
+    <span><a href="./studentList.html">Students</a></span>
+    <span><a href="./teacherList.html">Teachers</a></span>
+    <span id="message" style="color: red;"></span>
+</nav>
+<h1>Edit Group</h1>
+<form id="groupEditForm" name="groupEdit">
+    <table>
+        <tr>
+            <td><label for="title">Group Title</label></td>
+            <td>
+                <input id="title" name="title" type="text" minlength="2" maxlength="20" required/>
+                <input id="id" name="id" type="hidden"/>
+            </td>
+        </tr>
+        <tr>
+            <td><label for="description">Description</label></td>
+            <td><input id="description" name="description" type="text" minlength="5" maxlength="200"/></td>
+        </tr>
+        <tr>
+            <td><label for="graduationYear">Graduation Year</label></td>
+            <td><input id="graduationYear" name="graduationYear" type="number" min="2000" max="2100" step="1"/></td>
+        </tr>
+        <tr>
+            <td><label for="teacher">Teacher</label></td>
+            <td><select id="teacher" name="teacherID" required></select></td>
+        </tr>
+    </table>
+    <table>
+        <tr>
+            <td>
+                <button id="save" type="submit">Save</button>
+            </td>
+            <td>
+                <button id="reset" type="reset">Reset</button>
+            </td>
+            <td>
+                <button id="cancel" type="button">Cancel</button>
+            </td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>
