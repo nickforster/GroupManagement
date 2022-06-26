@@ -1,17 +1,17 @@
 /**
- * view-controller for groupList.html
+ * view-controller for teacherList.html
  */
 let delayTimer;
 
 document.addEventListener("DOMContentLoaded", () => {
-    readGroups()
+    readTeachers()
 });
 
 /**
- * reads all groups
+ * reads all teachers
  */
-function readGroups() {
-    fetch("./resource/group/list")
+function readTeachers() {
+    fetch("./resource/teacher/list")
         .then(function (response) {
             if (response.ok) {
                 return response;
@@ -21,7 +21,7 @@ function readGroups() {
         })
         .then(response => response.json())
         .then(data => {
-            showGroupList(data);
+            showTeacherList(data);
         })
         .catch(function (error) {
             console.log(error);
@@ -29,41 +29,38 @@ function readGroups() {
 }
 
 /**
- * shows the groupList as a table
- * @param data the groups
+ * shows the teacherList as a table
+ * @param data the teachers
  */
-function showGroupList(data) {
+function showTeacherList(data) {
     const userRole = getCookie("userRole");
-    let tBody = document.getElementById("groupList");
+    let tBody = document.getElementById("teacherList");
     tBody.innerHTML = ""
 
 
-    data.forEach(group => {
+    data.forEach(teacher => {
         let row = tBody.insertRow(-1);
 
         let button = document.createElement("button");
         if (userRole === "admin") {
             button.innerHTML = "&#9998;";
             button.type = "button";
-            button.name = "editBook";
-            button.setAttribute("data-id", group.id);
-            button.addEventListener("click", editBook);
+            button.name = "editTeacher";
+            button.setAttribute("data-id", teacher.id);
+            button.addEventListener("click", editTeacher);
             row.insertCell(-1).appendChild(button);
         }
 
-        row.insertCell(-1).innerHTML = group.title;
-        row.insertCell(-1).innerHTML = group.description;
-        row.insertCell(-1).innerHTML = group.graduationYear;
-        row.insertCell(-1).innerHTML = group.teacher.firstName;
-        row.insertCell(-1).innerHTML = group.teacher.lastName;
+        row.insertCell(-1).innerHTML = teacher.firstName
+        row.insertCell(-1).innerHTML = teacher.lastName
 
         if (userRole === "admin") {
             button = document.createElement("button");
             button.innerHTML = "&#128465;";
             button.type = "button";
-            button.name = "deleteBook";
-            button.setAttribute("data-id", group.id);
-            button.addEventListener("click", deleteBook);
+            button.name = "deleteTeacher";
+            button.setAttribute("data-id", teacher.id);
+            button.addEventListener("click", deleteTeacher);
             row.insertCell(-1).appendChild(button);
         }
 
@@ -73,7 +70,7 @@ function showGroupList(data) {
     if (userRole === "admin") {
         const th = document.createElement("th")
         tHeadings.insertBefore(th, tHeadings.firstChild)
-        document.getElementById("addButton").innerHTML = "<a href='./groupEdit.html'>New Group</a>";
+        document.getElementById("addButton").innerHTML = "<a href='./teacherEdit.html'>New Teacher</a>";
     }
 }
 
@@ -81,27 +78,27 @@ function showGroupList(data) {
  * redirects to the edit-form
  * @param event the click-event
  */
-function editBook(event) {
+function editTeacher(event) {
     const button = event.target;
     const id = button.getAttribute("data-id");
-    window.location.href = "./groupEdit.html?id=" + id;
+    window.location.href = "./teacherEdit.html?id=" + id;
 }
 
 /**
- * deletes a group
+ * deletes a teacher
  * @param event the click-event
  */
-function deleteBook(event) {
+function deleteTeacher(event) {
     const button = event.target;
     const id = button.getAttribute("data-id");
 
-    fetch("./resource/group/delete?id=" + id,
+    fetch("./resource/teacher/delete?id=" + id,
         {
             method: "DELETE"
         })
         .then(function (response) {
             if (response.ok) {
-                window.location.href = "./groupList.html";
+                window.location.href = "./teacherList.html";
             } else {
                 console.log(response);
             }
