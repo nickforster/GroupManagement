@@ -1,0 +1,15 @@
+th {
+    text-align: left;
+}
+
+.info {
+    color: green !important;
+}
+
+.warning {
+    color: yellow;
+}
+
+.error {
+    color: red;
+}
