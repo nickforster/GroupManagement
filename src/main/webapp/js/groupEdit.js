@@ -15,8 +15,8 @@ document.addEventListener("DOMContentLoaded", () => {
 function saveGroup(event) {
     event.preventDefault();
 
-    const bookForm = document.getElementById("groupEditForm");
-    const formData = new FormData(bookForm);
+    const groupForm = document.getElementById("groupEditForm");
+    const formData = new FormData(groupForm);
     const data = new URLSearchParams(formData);
 
     let method;

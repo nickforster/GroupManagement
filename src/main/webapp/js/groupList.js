@@ -45,9 +45,9 @@ function showGroupList(data) {
         if (userRole === "admin") {
             button.innerHTML = "&#9998;";
             button.type = "button";
-            button.name = "editBook";
+            button.name = "editGroup";
             button.setAttribute("data-id", group.id);
-            button.addEventListener("click", editBook);
+            button.addEventListener("click", editGroup);
             row.insertCell(-1).appendChild(button);
         }
 
@@ -61,9 +61,9 @@ function showGroupList(data) {
             button = document.createElement("button");
             button.innerHTML = "&#128465;";
             button.type = "button";
-            button.name = "deleteBook";
+            button.name = "deleteGroup";
             button.setAttribute("data-id", group.id);
-            button.addEventListener("click", deleteBook);
+            button.addEventListener("click", deleteGroup);
             row.insertCell(-1).appendChild(button);
         }
 
@@ -81,7 +81,7 @@ function showGroupList(data) {
  * redirects to the edit-form
  * @param event the click-event
  */
-function editBook(event) {
+function editGroup(event) {
     const button = event.target;
     const id = button.getAttribute("data-id");
     window.location.href = "./groupEdit.html?id=" + id;
@@ -91,7 +91,7 @@ function editBook(event) {
  * deletes a group
  * @param event the click-event
  */
-function deleteBook(event) {
+function deleteGroup(event) {
     const button = event.target;
     const id = button.getAttribute("data-id");
 
