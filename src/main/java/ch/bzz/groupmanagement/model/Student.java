@@ -162,6 +162,7 @@ public class Student {
         getGroup().setDescription(group.getDescription());
         getGroup().setGraduationYear(group.getGraduationYear());
         getGroup().setTeacherID(group.getId());
+        groupID = id;
     }
 
     public int getGroupID() {
