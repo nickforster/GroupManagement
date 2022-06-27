@@ -15,9 +15,6 @@ import java.util.List;
  */
 public class Group {
     @JsonIgnore
-    private List<Student> students;
-
-    @JsonIgnore
     private Teacher teacher;
 
     private int id;
@@ -99,21 +96,6 @@ public class Group {
      */
     public void setGraduationYear(int graduationYear) {
         this.graduationYear = graduationYear;
-    }
-
-    /**
-     * gets the list of students from the group-object
-     * @return
-     */
-    public List<Student> getStudents() {
-        return students;
-    }
-
-    /**
-     * sets the student of the group-object
-     */
-    public void setStudents(List<Student> students) {
-        this.students = students;
     }
 
     /**

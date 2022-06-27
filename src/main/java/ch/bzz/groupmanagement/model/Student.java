@@ -1,7 +1,6 @@
 package ch.bzz.groupmanagement.model;
 
 import ch.bzz.groupmanagement.data.DataHandler;
-import ch.bzz.groupmanagement.util.BirthDate;
 import ch.bzz.groupmanagement.util.LocalDateDeserializer;
 import ch.bzz.groupmanagement.util.LocalDateSerializer;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -16,10 +15,10 @@ import java.time.LocalDate;
  * A student in a group
  */
 public class Student {
+    private int id;
+
     @JsonIgnore
     private Group group;
-
-    private int id;
 
     @FormParam("groupID")
     @Min(0)
@@ -35,8 +34,6 @@ public class Student {
     @Size(min=2, max=40)
     private String lastName;
 
-    //@FormParam("birthDate")
-    // make own class for validation
     @JsonDeserialize(using = LocalDateDeserializer.class)
     @JsonSerialize(using = LocalDateSerializer.class)
     private LocalDate birthDate;

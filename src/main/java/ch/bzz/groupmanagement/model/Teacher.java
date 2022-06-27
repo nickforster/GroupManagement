@@ -1,19 +1,14 @@
 package ch.bzz.groupmanagement.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import javax.ws.rs.FormParam;
-import java.util.List;
 
 /**
  * A teacher of a group
  */
 public class Teacher {
-    @JsonIgnore
-    private List<Group> groups;
-
     private int id;
 
     @FormParam("firstName")
@@ -69,20 +64,5 @@ public class Teacher {
      */
     public void setLastName(String lastName) {
         this.lastName = lastName;
-    }
-
-    /**
-     * gets the list of Groups from the teacher-object
-     * @return
-     */
-    public List<Group> getGroups() {
-        return groups;
-    }
-
-    /**
-     * sets the list of groups of the teacher-object
-     */
-    public void setGroups(List<Group> groups) {
-        this.groups = groups;
     }
 }
