@@ -1,7 +1,6 @@
 /**
  * view-controller for teacherList.html
  */
-let delayTimer;
 
 document.addEventListener("DOMContentLoaded", () => {
     readTeachers()
@@ -42,14 +41,12 @@ function showTeacherList(data) {
         let row = tBody.insertRow(-1);
 
         let button = document.createElement("button");
-        if (userRole === "admin") {
-            button.innerHTML = "&#9998;";
-            button.type = "button";
-            button.name = "editTeacher";
-            button.setAttribute("data-id", teacher.id);
-            button.addEventListener("click", editTeacher);
-            row.insertCell(-1).appendChild(button);
-        }
+        button.innerHTML = "&#9998;";
+        button.type = "button";
+        button.name = "editTeacher";
+        button.setAttribute("data-id", teacher.id);
+        button.addEventListener("click", editTeacher);
+        row.insertCell(-1).appendChild(button);
 
         row.insertCell(-1).innerHTML = teacher.firstName
         row.insertCell(-1).innerHTML = teacher.lastName
@@ -66,10 +63,7 @@ function showTeacherList(data) {
 
     });
 
-    let tHeadings = document.getElementById("headings");
     if (userRole === "admin") {
-        const th = document.createElement("th")
-        tHeadings.insertBefore(th, tHeadings.firstChild)
         document.getElementById("addButton").innerHTML = "<a href='./teacherEdit.html'>New Teacher</a>";
     }
 }

@@ -80,12 +80,15 @@ function readGroup() {
  * @param data the group-data
  */
 function showGroup(data) {
-    //const userRole = getCookie("userRole");
+    const userRole = getCookie("userRole");
     document.getElementById("id").value = data.id;
     document.getElementById("title").value = data.title;
     document.getElementById("description").value = data.description;
     document.getElementById("graduationYear").value = data.graduationYear;
     document.getElementById("teacher").value = data.teacherID; //TODO doesn't always load correctly
+
+    const locked = userRole === "user";
+    lockForm("groupEditForm", locked);
 }
 
 /**

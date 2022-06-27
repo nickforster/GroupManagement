@@ -1,7 +1,6 @@
 /**
  * view-controller for groupList.html
  */
-let delayTimer;
 
 document.addEventListener("DOMContentLoaded", () => {
     readGroups()
@@ -42,14 +41,12 @@ function showGroupList(data) {
         let row = tBody.insertRow(-1);
 
         let button = document.createElement("button");
-        if (userRole === "admin") {
-            button.innerHTML = "&#9998;";
-            button.type = "button";
-            button.name = "editGroup";
-            button.setAttribute("data-id", group.id);
-            button.addEventListener("click", editGroup);
-            row.insertCell(-1).appendChild(button);
-        }
+        button.innerHTML = "&#9998;";
+        button.type = "button";
+        button.name = "editGroup";
+        button.setAttribute("data-id", group.id);
+        button.addEventListener("click", editGroup);
+        row.insertCell(-1).appendChild(button);
 
         row.insertCell(-1).innerHTML = group.title;
         row.insertCell(-1).innerHTML = group.description;
@@ -69,10 +66,7 @@ function showGroupList(data) {
 
     });
 
-    let tHeadings = document.getElementById("headings");
     if (userRole === "admin") {
-        const th = document.createElement("th")
-        tHeadings.insertBefore(th, tHeadings.firstChild)
         document.getElementById("addButton").innerHTML = "<a href='./groupEdit.html'>New Group</a>";
     }
 }

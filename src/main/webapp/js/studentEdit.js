@@ -80,13 +80,16 @@ function readStudent() {
  * @param data the student-data
  */
 function showStudent(data) {
-    //const userRole = getCookie("userRole");
+    const userRole = getCookie("userRole");
     document.getElementById("id").value = data.id;
     document.getElementById("firstName").value = data.firstName;
     document.getElementById("lastName").value = data.lastName;
     document.getElementById("birthDate").value = data.birthDate;
     document.getElementById("phoneNumber").value = data.phoneNumber;
     document.getElementById("group").value = data.groupID; //TODO doesn't always load correctly
+
+    const locked = userRole === "user";
+    lockForm("studentEditForm", locked);
 }
 
 /**

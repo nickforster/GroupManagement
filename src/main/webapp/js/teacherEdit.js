@@ -79,10 +79,13 @@ function readTeacher() {
  * @param data the teacher-data
  */
 function showTeacher(data) {
-    //const userRole = getCookie("userRole");
+    const userRole = getCookie("userRole");
     document.getElementById("id").value = data.id;
     document.getElementById("firstName").value = data.firstName;
     document.getElementById("lastName").value = data.lastName;
+
+    const locked = (userRole === "user");
+    lockForm("teacherEditForm", locked)
 }
 
 /**
