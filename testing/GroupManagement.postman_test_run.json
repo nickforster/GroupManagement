@@ -1,18 +1,45 @@
 {
-	"id": "6732a261-4d95-42da-8c2f-2cf08a8c0d82",
+	"id": "2a5985a4-8c9d-4876-a0e3-c22d2fd3bfed",
 	"name": "GroupManagement",
-	"timestamp": "2022-06-12T12:27:44.168Z",
+	"timestamp": "2022-06-27T18:02:02.035Z",
 	"collection_id": "91f79565-f84c-440f-a137-1f7bc3757f14",
 	"folder_id": 0,
 	"environment_id": "0",
-	"totalPass": 59,
+	"totalPass": 99,
 	"totalFail": 0,
 	"results": [
 		{
-			"id": "0f2db274-8e84-4dea-a45d-9ead451055be",
-			"name": "1.1 list students",
+			"id": "fa19ef73-7190-4c7a-9038-a0b200aead7b",
+			"name": "1.1 login valid user",
+			"url": "http://localhost:8080/GroupManagement-1.0/resource/user/login",
+			"time": 107,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				107
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "2213001c-cce4-4fef-b8ca-38e31a113546",
+			"name": "1.1.1 list students",
 			"url": "http://localhost:8080/GroupManagement-1.0/resource/student/list",
-			"time": 2656,
+			"time": 162,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -32,7 +59,7 @@
 				}
 			},
 			"times": [
-				2656
+				162
 			],
 			"allTests": [
 				{
@@ -42,10 +69,10 @@
 			]
 		},
 		{
-			"id": "b9db15e8-0510-49eb-812c-15a6c8047626",
-			"name": "1.2 read valid student",
+			"id": "872b9755-668a-45b9-b727-2c756a2e52ff",
+			"name": "1.1.2 read valid student",
 			"url": "http://localhost:8080/GroupManagement-1.0/resource/student/read?id=0",
-			"time": 23,
+			"time": 52,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -65,7 +92,7 @@
 				}
 			},
 			"times": [
-				23
+				52
 			],
 			"allTests": [
 				{
@@ -75,13 +102,13 @@
 			]
 		},
 		{
-			"id": "56106bb1-fdc0-48af-a157-affcf02b8af1",
-			"name": "1.3 create valid student",
+			"id": "3860f5b8-2cb8-4982-a050-83fb4fa3a070",
+			"name": "1.1.3 create valid student unauthorized",
 			"url": "http://localhost:8080/GroupManagement-1.0/resource/student/create",
-			"time": 2079,
+			"time": 34,
 			"responseCode": {
-				"code": 200,
-				"name": "OK"
+				"code": 403,
+				"name": "Forbidden"
 			},
 			"tests": {
 				"Status test": true
@@ -93,7 +120,7 @@
 				}
 			},
 			"times": [
-				2079
+				34
 			],
 			"allTests": [
 				{
@@ -102,13 +129,13 @@
 			]
 		},
 		{
-			"id": "ab3a2abc-f231-4f98-8bba-d669d6de8ddd",
-			"name": "1.4 delete valid student",
+			"id": "968774fc-132e-44b0-a1fb-68e42ea241ae",
+			"name": "1.1.4 delete valid student unauthorized",
 			"url": "http://localhost:8080/GroupManagement-1.0/resource/student/delete?id=1",
-			"time": 102,
+			"time": 13,
 			"responseCode": {
-				"code": 200,
-				"name": "OK"
+				"code": 403,
+				"name": "Forbidden"
 			},
 			"tests": {
 				"Status test": true
@@ -120,7 +147,7 @@
 				}
 			},
 			"times": [
-				102
+				13
 			],
 			"allTests": [
 				{
@@ -129,13 +156,13 @@
 			]
 		},
 		{
-			"id": "1f23265d-8a0b-4fd4-9225-f70fe1f630c1",
-			"name": "1.5 update valid student",
+			"id": "03c0e493-abbd-43c4-885f-a9b2ab02b377",
+			"name": "1.1.5 update valid student unauthorized",
 			"url": "http://localhost:8080/GroupManagement-1.0/resource/student/update",
-			"time": 49,
+			"time": 12,
 			"responseCode": {
-				"code": 200,
-				"name": "OK"
+				"code": 403,
+				"name": "Forbidden"
 			},
 			"tests": {
 				"Status test": true
@@ -147,7 +174,7 @@
 				}
 			},
 			"times": [
-				49
+				12
 			],
 			"allTests": [
 				{
@@ -156,415 +183,10 @@
 			]
 		},
 		{
-			"id": "7e6d86d9-4d9f-4be6-8426-f3574bed7ce3",
-			"name": "2.1 read unknown student",
-			"url": "http://localhost:8080/GroupManagement-1.0/resource/student/read?id=10000",
-			"time": 25,
-			"responseCode": {
-				"code": 410,
-				"name": "Gone"
-			},
-			"tests": {
-				"Status test": true
-			},
-			"testPassFailCounts": {
-				"Status test": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				25
-			],
-			"allTests": [
-				{
-					"Status test": true
-				}
-			]
-		},
-		{
-			"id": "b0dc8548-5a3c-419b-9e40-49f857106934",
-			"name": "2.2 delete unknown student",
-			"url": "http://localhost:8080/GroupManagement-1.0/resource/student/delete?id=1000",
-			"time": 15,
-			"responseCode": {
-				"code": 410,
-				"name": "Gone"
-			},
-			"tests": {
-				"Status test": true
-			},
-			"testPassFailCounts": {
-				"Status test": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				15
-			],
-			"allTests": [
-				{
-					"Status test": true
-				}
-			]
-		},
-		{
-			"id": "e83f85bc-a5ee-48dc-ba7d-22287d376c34",
-			"name": "2.3 update unknown student",
-			"url": "http://localhost:8080/GroupManagement-1.0/resource/student/update",
-			"time": 53,
-			"responseCode": {
-				"code": 410,
-				"name": "Gone"
-			},
-			"tests": {
-				"Status test": true
-			},
-			"testPassFailCounts": {
-				"Status test": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				53
-			],
-			"allTests": [
-				{
-					"Status test": true
-				}
-			]
-		},
-		{
-			"id": "9412434a-b7d3-4a50-a3c2-4a4c1d97c868",
-			"name": "2.4 create student with unknown group",
-			"url": "http://localhost:8080/GroupManagement-1.0/resource/student/create",
-			"time": 32,
-			"responseCode": {
-				"code": 400,
-				"name": "Bad Request"
-			},
-			"tests": {
-				"Status test": true
-			},
-			"testPassFailCounts": {
-				"Status test": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				32
-			],
-			"allTests": [
-				{
-					"Status test": true
-				}
-			]
-		},
-		{
-			"id": "2630f3d1-37f7-4d0d-9915-c6706943082d",
-			"name": "2.5 update student with unknown group",
-			"url": "http://localhost:8080/GroupManagement-1.0/resource/student/update",
-			"time": 49,
-			"responseCode": {
-				"code": 400,
-				"name": "Bad Request"
-			},
-			"tests": {
-				"Status test": true
-			},
-			"testPassFailCounts": {
-				"Status test": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				49
-			],
-			"allTests": [
-				{
-					"Status test": true
-				}
-			]
-		},
-		{
-			"id": "d14e9f23-aa17-4b5c-a7a1-c0bad122fb4a",
-			"name": "3.1 create student with a to long firstName",
-			"url": "http://localhost:8080/GroupManagement-1.0/resource/student/create",
-			"time": 687,
-			"responseCode": {
-				"code": 400,
-				"name": "Bad Request"
-			},
-			"tests": {
-				"Status test": true
-			},
-			"testPassFailCounts": {
-				"Status test": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				687
-			],
-			"allTests": [
-				{
-					"Status test": true
-				}
-			]
-		},
-		{
-			"id": "da9e62f7-48cd-42c5-a617-840d44c8dbe8",
-			"name": "3.2 create student with a to short firstName",
-			"url": "http://localhost:8080/GroupManagement-1.0/resource/student/create",
-			"time": 48,
-			"responseCode": {
-				"code": 400,
-				"name": "Bad Request"
-			},
-			"tests": {
-				"Status test": true
-			},
-			"testPassFailCounts": {
-				"Status test": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				48
-			],
-			"allTests": [
-				{
-					"Status test": true
-				}
-			]
-		},
-		{
-			"id": "30987820-a338-40c8-968a-50fa74637d2e",
-			"name": "3.3 create student with a to long lastName",
-			"url": "http://localhost:8080/GroupManagement-1.0/resource/student/create",
-			"time": 60,
-			"responseCode": {
-				"code": 400,
-				"name": "Bad Request"
-			},
-			"tests": {
-				"Status test": true
-			},
-			"testPassFailCounts": {
-				"Status test": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				60
-			],
-			"allTests": [
-				{
-					"Status test": true
-				}
-			]
-		},
-		{
-			"id": "3b25688e-9c3e-4e08-b24f-14602a2e4144",
-			"name": "3.4 create student with a to short lastName",
-			"url": "http://localhost:8080/GroupManagement-1.0/resource/student/create",
-			"time": 31,
-			"responseCode": {
-				"code": 400,
-				"name": "Bad Request"
-			},
-			"tests": {
-				"Status test": true
-			},
-			"testPassFailCounts": {
-				"Status test": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				31
-			],
-			"allTests": [
-				{
-					"Status test": true
-				}
-			]
-		},
-		{
-			"id": "05165237-98e6-48f0-b6a4-d9a6da1afeec",
-			"name": "3.5 create student with a to early birthdate",
-			"url": "http://localhost:8080/GroupManagement-1.0/resource/student/create",
-			"time": 53,
-			"responseCode": {
-				"code": 400,
-				"name": "Bad Request"
-			},
-			"tests": {
-				"Status test": true
-			},
-			"testPassFailCounts": {
-				"Status test": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				53
-			],
-			"allTests": [
-				{
-					"Status test": true
-				}
-			]
-		},
-		{
-			"id": "b86c3842-b0aa-4052-a0c6-f4f1c5381b8e",
-			"name": "3.6 create student with a birhtdate in the Future",
-			"url": "http://localhost:8080/GroupManagement-1.0/resource/student/create",
-			"time": 79,
-			"responseCode": {
-				"code": 400,
-				"name": "Bad Request"
-			},
-			"tests": {
-				"Status test": true
-			},
-			"testPassFailCounts": {
-				"Status test": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				79
-			],
-			"allTests": [
-				{
-					"Status test": true
-				}
-			]
-		},
-		{
-			"id": "9b90a3d0-14a2-4d8d-ae2b-ba341055ad6d",
-			"name": "3.7 create student with a formally wrong birhtdate",
-			"url": "http://localhost:8080/GroupManagement-1.0/resource/student/create",
-			"time": 73,
-			"responseCode": {
-				"code": 400,
-				"name": "Bad Request"
-			},
-			"tests": {
-				"Status test": true
-			},
-			"testPassFailCounts": {
-				"Status test": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				73
-			],
-			"allTests": [
-				{
-					"Status test": true
-				}
-			]
-		},
-		{
-			"id": "84c725ae-7c8e-4aa7-9f93-f736782f126e",
-			"name": "3.8 create student with a formally wrong phoneNumber",
-			"url": "http://localhost:8080/GroupManagement-1.0/resource/student/create",
-			"time": 53,
-			"responseCode": {
-				"code": 400,
-				"name": "Bad Request"
-			},
-			"tests": {
-				"Status test": true
-			},
-			"testPassFailCounts": {
-				"Status test": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				53
-			],
-			"allTests": [
-				{
-					"Status test": true
-				}
-			]
-		},
-		{
-			"id": "c3e9b1dc-b890-42f9-a752-b1499b3565bb",
-			"name": "3.9 create student with a to little groupID",
-			"url": "http://localhost:8080/GroupManagement-1.0/resource/student/create",
-			"time": 152,
-			"responseCode": {
-				"code": 400,
-				"name": "Bad Request"
-			},
-			"tests": {
-				"Status test": true
-			},
-			"testPassFailCounts": {
-				"Status test": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				152
-			],
-			"allTests": [
-				{
-					"Status test": true
-				}
-			]
-		},
-		{
-			"id": "a82a06e1-bf55-47eb-8911-45ad5c5d2c9f",
-			"name": "3.10 create student with a formally wrong groupID",
-			"url": "http://localhost:8080/GroupManagement-1.0/resource/student/create",
-			"time": 73,
-			"responseCode": {
-				"code": 400,
-				"name": "Bad Request"
-			},
-			"tests": {
-				"Status test": true
-			},
-			"testPassFailCounts": {
-				"Status test": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				73
-			],
-			"allTests": [
-				{
-					"Status test": true
-				}
-			]
-		},
-		{
-			"id": "6d454dd4-e420-4936-b0e1-83276db651bf",
-			"name": "1.1 list teachers",
+			"id": "98ebc11c-c78b-42f9-864b-dbf0101f8f8e",
+			"name": "1.1.6 list teachers",
 			"url": "http://localhost:8080/GroupManagement-1.0/resource/teacher/list",
-			"time": 31,
+			"time": 41,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -584,7 +206,7 @@
 				}
 			},
 			"times": [
-				31
+				41
 			],
 			"allTests": [
 				{
@@ -594,9 +216,156 @@
 			]
 		},
 		{
-			"id": "8a44e8e9-54af-4909-893a-f86a59fc9992",
-			"name": "1.2 read valid teacher",
+			"id": "c7b43e32-709a-467b-8ecd-51cc395a97f9",
+			"name": "1.1.7 read valid teacher",
 			"url": "http://localhost:8080/GroupManagement-1.0/resource/teacher/read?id=2",
+			"time": 22,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status test": true,
+				"validate response": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				},
+				"validate response": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				22
+			],
+			"allTests": [
+				{
+					"Status test": true,
+					"validate response": true
+				}
+			]
+		},
+		{
+			"id": "f841bb34-cc51-494e-aac6-db7e13b41e60",
+			"name": "1.1.8 create valid teacher unauthorized",
+			"url": "http://localhost:8080/GroupManagement-1.0/resource/teacher/create",
+			"time": 44,
+			"responseCode": {
+				"code": 403,
+				"name": "Forbidden"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				44
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "f1c6d3b6-7245-48b0-8a5b-34aadb04c23a",
+			"name": "1.1.9 delete valid teacher unauthorized",
+			"url": "http://localhost:8080/GroupManagement-1.0/resource/teacher/delete?id=1",
+			"time": 17,
+			"responseCode": {
+				"code": 403,
+				"name": "Forbidden"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				17
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "2658cdca-a028-4b14-be46-d8d49a5f6783",
+			"name": "1.1.10 update valid teacher unauthorized",
+			"url": "http://localhost:8080/GroupManagement-1.0/resource/teacher/update",
+			"time": 11,
+			"responseCode": {
+				"code": 403,
+				"name": "Forbidden"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				11
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "cdb57c7b-349d-45a4-b2a5-928be749bced",
+			"name": "1.1.11 list groups",
+			"url": "http://localhost:8080/GroupManagement-1.0/resource/group/list",
+			"time": 53,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status test": true,
+				"validate response": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				},
+				"validate response": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				53
+			],
+			"allTests": [
+				{
+					"Status test": true,
+					"validate response": true
+				}
+			]
+		},
+		{
+			"id": "be61fd2e-c7d9-4713-b17f-2ca535105133",
+			"name": "1.1.12 read valid group",
+			"url": "http://localhost:8080/GroupManagement-1.0/resource/group/read?id=2",
 			"time": 16,
 			"responseCode": {
 				"code": 200,
@@ -627,10 +396,118 @@
 			]
 		},
 		{
-			"id": "9f4c86b5-d5af-4ea1-beec-cab56f7b8651",
-			"name": "1.3 create valid teacher",
-			"url": "http://localhost:8080/GroupManagement-1.0/resource/teacher/create",
-			"time": 132,
+			"id": "5a0b33d4-52f2-4be8-9d4b-03cc8a83e045",
+			"name": "1.1.13 create valid group unauthorized",
+			"url": "http://localhost:8080/GroupManagement-1.0/resource/group/create",
+			"time": 52,
+			"responseCode": {
+				"code": 403,
+				"name": "Forbidden"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				52
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "c6916d74-2e35-41cf-8498-039eefa5d305",
+			"name": "1.1.14 delete valid group unauthorized",
+			"url": "http://localhost:8080/GroupManagement-1.0/resource/group/delete?id=2",
+			"time": 16,
+			"responseCode": {
+				"code": 403,
+				"name": "Forbidden"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				16
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "f86585bc-61c9-48a0-b280-85eee7ec0c09",
+			"name": "1.1.15 update valid group unauthorized",
+			"url": "http://localhost:8080/GroupManagement-1.0/resource/group/update",
+			"time": 22,
+			"responseCode": {
+				"code": 403,
+				"name": "Forbidden"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				22
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "70c74520-6f33-4348-ae11-4ef5de84b935",
+			"name": "1.2 login unknown user",
+			"url": "http://localhost:8080/GroupManagement-1.0/resource/user/login",
+			"time": 33,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				33
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "18b003a8-0ec6-4559-bb5e-391331b8b3ff",
+			"name": "1.3 logout valid user",
+			"url": "http://localhost:8080/GroupManagement-1.0/resource/user/logout",
+			"time": 15,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -645,7 +522,7 @@
 				}
 			},
 			"times": [
-				132
+				15
 			],
 			"allTests": [
 				{
@@ -654,13 +531,13 @@
 			]
 		},
 		{
-			"id": "7bb17822-3ed8-4c63-a2b5-38b0a1f9b35c",
-			"name": "1.4 delete valid teacher",
-			"url": "http://localhost:8080/GroupManagement-1.0/resource/teacher/delete?id=1",
+			"id": "16523f91-f3a0-45a3-aed9-bb8d6704c30e",
+			"name": "1.3.1 list students unauthorized",
+			"url": "http://localhost:8080/GroupManagement-1.0/resource/student/list",
 			"time": 29,
 			"responseCode": {
-				"code": 200,
-				"name": "OK"
+				"code": 403,
+				"name": "Forbidden"
 			},
 			"tests": {
 				"Status test": true
@@ -681,13 +558,13 @@
 			]
 		},
 		{
-			"id": "0a4564df-040e-403d-8fde-597333f27eff",
-			"name": "1.5 update valid teacher",
-			"url": "http://localhost:8080/GroupManagement-1.0/resource/teacher/update",
-			"time": 44,
+			"id": "55c88493-f973-4efe-9c0a-34e4c53b4a3a",
+			"name": "1.3.2 read valid student unauthorized",
+			"url": "http://localhost:8080/GroupManagement-1.0/resource/student/read?id=0",
+			"time": 15,
 			"responseCode": {
-				"code": 200,
-				"name": "OK"
+				"code": 403,
+				"name": "Forbidden"
 			},
 			"tests": {
 				"Status test": true
@@ -699,7 +576,7 @@
 				}
 			},
 			"times": [
-				44
+				15
 			],
 			"allTests": [
 				{
@@ -708,13 +585,13 @@
 			]
 		},
 		{
-			"id": "84153ba0-54f6-4be9-9c01-6551f9f2469f",
-			"name": "2.1 read unknown teacher",
-			"url": "http://localhost:8080/GroupManagement-1.0/resource/teacher/read?id=10",
+			"id": "98038f15-11c8-443b-a80b-7a8bf15bfa2f",
+			"name": "1.3.3 create valid student unauthorized",
+			"url": "http://localhost:8080/GroupManagement-1.0/resource/student/create",
 			"time": 25,
 			"responseCode": {
-				"code": 410,
-				"name": "Gone"
+				"code": 403,
+				"name": "Forbidden"
 			},
 			"tests": {
 				"Status test": true
@@ -735,13 +612,13 @@
 			]
 		},
 		{
-			"id": "0bfd550b-2d95-4a67-8bef-76141ed64efe",
-			"name": "2.2 delete unknown teacher",
-			"url": "http://localhost:8080/GroupManagement-1.0/resource/teacher/delete?id=10",
-			"time": 15,
+			"id": "b8178aea-947c-4073-81e1-d308dcf75270",
+			"name": "1.3.4 delete valid student unauthorized",
+			"url": "http://localhost:8080/GroupManagement-1.0/resource/student/delete?id=1",
+			"time": 10,
 			"responseCode": {
-				"code": 410,
-				"name": "Gone"
+				"code": 403,
+				"name": "Forbidden"
 			},
 			"tests": {
 				"Status test": true
@@ -753,7 +630,7 @@
 				}
 			},
 			"times": [
-				15
+				10
 			],
 			"allTests": [
 				{
@@ -762,13 +639,148 @@
 			]
 		},
 		{
-			"id": "83b22d4f-6b73-4dde-a548-ab5fd736c877",
-			"name": "2.3 update unknown teacher",
+			"id": "dbfda610-2d6b-4a66-90bb-666cb7bc8872",
+			"name": "1.3.5 update valid student unauthorized",
+			"url": "http://localhost:8080/GroupManagement-1.0/resource/student/update",
+			"time": 10,
+			"responseCode": {
+				"code": 403,
+				"name": "Forbidden"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				10
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "99a40954-6fb2-4e99-9368-c6c98e0b5e9d",
+			"name": "1.3.6 list teachers unauthorized",
+			"url": "http://localhost:8080/GroupManagement-1.0/resource/teacher/list",
+			"time": 19,
+			"responseCode": {
+				"code": 403,
+				"name": "Forbidden"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				19
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "215534f0-66b5-4b4c-88c0-0baaa111de23",
+			"name": "1.3.7 read valid teacher unauthorized",
+			"url": "http://localhost:8080/GroupManagement-1.0/resource/teacher/read?id=2",
+			"time": 7,
+			"responseCode": {
+				"code": 403,
+				"name": "Forbidden"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				7
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "e41692b6-f926-4743-9e0f-4295ecafd270",
+			"name": "1.3.8 create valid teacher unauthorized",
+			"url": "http://localhost:8080/GroupManagement-1.0/resource/teacher/create",
+			"time": 23,
+			"responseCode": {
+				"code": 403,
+				"name": "Forbidden"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				23
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "aabca03d-f0ac-4eae-bdd2-3879d4198641",
+			"name": "1.3.9 delete valid teacher unauthorized",
+			"url": "http://localhost:8080/GroupManagement-1.0/resource/teacher/delete?id=1",
+			"time": 10,
+			"responseCode": {
+				"code": 403,
+				"name": "Forbidden"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				10
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "5723c898-5000-4ff0-a777-ca874c3c18af",
+			"name": "1.3.10 update valid teacher unauthorized",
 			"url": "http://localhost:8080/GroupManagement-1.0/resource/teacher/update",
-			"time": 50,
+			"time": 33,
 			"responseCode": {
-				"code": 410,
-				"name": "Gone"
+				"code": 403,
+				"name": "Forbidden"
 			},
 			"tests": {
 				"Status test": true
@@ -780,7 +792,7 @@
 				}
 			},
 			"times": [
-				50
+				33
 			],
 			"allTests": [
 				{
@@ -789,67 +801,13 @@
 			]
 		},
 		{
-			"id": "0c6284d3-4958-44a5-b8c7-a721cda29f77",
-			"name": "3.1 create teacher with a to long firstName",
-			"url": "http://localhost:8080/GroupManagement-1.0/resource/teacher/create",
-			"time": 28,
-			"responseCode": {
-				"code": 400,
-				"name": "Bad Request"
-			},
-			"tests": {
-				"Status test": true
-			},
-			"testPassFailCounts": {
-				"Status test": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				28
-			],
-			"allTests": [
-				{
-					"Status test": true
-				}
-			]
-		},
-		{
-			"id": "6ada4521-b254-4e06-8f82-44270cb31628",
-			"name": "3.2 create teacher with a to short firstName",
-			"url": "http://localhost:8080/GroupManagement-1.0/resource/teacher/create",
-			"time": 55,
-			"responseCode": {
-				"code": 400,
-				"name": "Bad Request"
-			},
-			"tests": {
-				"Status test": true
-			},
-			"testPassFailCounts": {
-				"Status test": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				55
-			],
-			"allTests": [
-				{
-					"Status test": true
-				}
-			]
-		},
-		{
-			"id": "1da1e0f3-af04-424f-8d06-343ea2a83c37",
-			"name": "3.3 create teacher with a to long lastName",
-			"url": "http://localhost:8080/GroupManagement-1.0/resource/teacher/create",
+			"id": "181bc081-ea45-429a-86eb-a47d04095fb8",
+			"name": "1.3.11 list groups unauthorized",
+			"url": "http://localhost:8080/GroupManagement-1.0/resource/group/list",
 			"time": 15,
 			"responseCode": {
-				"code": 400,
-				"name": "Bad Request"
+				"code": 403,
+				"name": "Forbidden"
 			},
 			"tests": {
 				"Status test": true
@@ -870,13 +828,13 @@
 			]
 		},
 		{
-			"id": "611899ce-b529-4287-8a72-156a78ed079e",
-			"name": "3.4 create teacher with a to short lastName",
-			"url": "http://localhost:8080/GroupManagement-1.0/resource/teacher/create",
-			"time": 18,
+			"id": "25a7bf91-d6f4-42a0-93cb-e52e798b4364",
+			"name": "1.3.12 read valid group unauthorized",
+			"url": "http://localhost:8080/GroupManagement-1.0/resource/group/read?id=2",
+			"time": 10,
 			"responseCode": {
-				"code": 400,
-				"name": "Bad Request"
+				"code": 403,
+				"name": "Forbidden"
 			},
 			"tests": {
 				"Status test": true
@@ -888,7 +846,7 @@
 				}
 			},
 			"times": [
-				18
+				10
 			],
 			"allTests": [
 				{
@@ -897,10 +855,118 @@
 			]
 		},
 		{
-			"id": "a5d07267-d8f1-4d55-8d21-8bdb1af673a6",
-			"name": "1.1 list groups",
-			"url": "http://localhost:8080/GroupManagement-1.0/resource/group/list",
-			"time": 35,
+			"id": "f291cdae-5cca-4470-b2f8-cfef80c9fba5",
+			"name": "1.3.13 create valid group unauthorized",
+			"url": "http://localhost:8080/GroupManagement-1.0/resource/group/create",
+			"time": 8,
+			"responseCode": {
+				"code": 403,
+				"name": "Forbidden"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				8
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "a0acd1a0-cc76-4691-be0f-d22743ceda12",
+			"name": "1.3.14 delete valid group unauthorized",
+			"url": "http://localhost:8080/GroupManagement-1.0/resource/group/delete?id=2",
+			"time": 7,
+			"responseCode": {
+				"code": 403,
+				"name": "Forbidden"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				7
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "f2226a5e-a771-4253-8f59-e383b46923dc",
+			"name": "1.3.15 update valid group unauthorized",
+			"url": "http://localhost:8080/GroupManagement-1.0/resource/group/update",
+			"time": 16,
+			"responseCode": {
+				"code": 403,
+				"name": "Forbidden"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				16
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "844c1acc-eab6-45ba-b4aa-5c67e9a967a6",
+			"name": "1.0 login valid admin",
+			"url": "http://localhost:8080/GroupManagement-1.0/resource/user/login",
+			"time": 10,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				10
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "0f2db274-8e84-4dea-a45d-9ead451055be",
+			"name": "1.1 list students",
+			"url": "http://localhost:8080/GroupManagement-1.0/resource/student/list",
+			"time": 47,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -920,7 +986,7 @@
 				}
 			},
 			"times": [
-				35
+				47
 			],
 			"allTests": [
 				{
@@ -930,9 +996,9 @@
 			]
 		},
 		{
-			"id": "2a82c4ee-1261-45d9-a967-e7b82ded2980",
-			"name": "1.2 read valid group",
-			"url": "http://localhost:8080/GroupManagement-1.0/resource/group/read?id=2",
+			"id": "b9db15e8-0510-49eb-812c-15a6c8047626",
+			"name": "1.2 read valid student",
+			"url": "http://localhost:8080/GroupManagement-1.0/resource/student/read?id=0",
 			"time": 9,
 			"responseCode": {
 				"code": 200,
@@ -963,10 +1029,10 @@
 			]
 		},
 		{
-			"id": "c1f618c5-bc1b-4c35-b0e5-f198b8db466a",
-			"name": "1.3 create valid group",
-			"url": "http://localhost:8080/GroupManagement-1.0/resource/group/create",
-			"time": 108,
+			"id": "56106bb1-fdc0-48af-a157-affcf02b8af1",
+			"name": "1.3 create valid student",
+			"url": "http://localhost:8080/GroupManagement-1.0/resource/student/create",
+			"time": 100,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -981,7 +1047,7 @@
 				}
 			},
 			"times": [
-				108
+				100
 			],
 			"allTests": [
 				{
@@ -990,10 +1056,10 @@
 			]
 		},
 		{
-			"id": "57e9db6f-502c-4529-b350-059ad919f5d8",
-			"name": "1.4 delete valid group",
-			"url": "http://localhost:8080/GroupManagement-1.0/resource/group/delete?id=2",
-			"time": 30,
+			"id": "ab3a2abc-f231-4f98-8bba-d669d6de8ddd",
+			"name": "1.4 delete valid student",
+			"url": "http://localhost:8080/GroupManagement-1.0/resource/student/delete?id=1",
+			"time": 42,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -1008,7 +1074,7 @@
 				}
 			},
 			"times": [
-				30
+				42
 			],
 			"allTests": [
 				{
@@ -1017,10 +1083,10 @@
 			]
 		},
 		{
-			"id": "9f7c581c-1c7b-4554-b587-3a047f5b8025",
-			"name": "1.5 update valid group",
-			"url": "http://localhost:8080/GroupManagement-1.0/resource/group/update",
-			"time": 55,
+			"id": "1f23265d-8a0b-4fd4-9225-f70fe1f630c1",
+			"name": "1.5 update valid student",
+			"url": "http://localhost:8080/GroupManagement-1.0/resource/student/update",
+			"time": 18,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -1035,7 +1101,7 @@
 				}
 			},
 			"times": [
-				55
+				18
 			],
 			"allTests": [
 				{
@@ -1044,10 +1110,10 @@
 			]
 		},
 		{
-			"id": "ee6b09b8-5be8-4519-b154-2341bcc5e242",
-			"name": "2.1 read unknown group",
-			"url": "http://localhost:8080/GroupManagement-1.0/resource/group/read?id=10",
-			"time": 12,
+			"id": "7e6d86d9-4d9f-4be6-8426-f3574bed7ce3",
+			"name": "2.1 read unknown student",
+			"url": "http://localhost:8080/GroupManagement-1.0/resource/student/read?id=10000",
+			"time": 18,
 			"responseCode": {
 				"code": 410,
 				"name": "Gone"
@@ -1062,7 +1128,7 @@
 				}
 			},
 			"times": [
-				12
+				18
 			],
 			"allTests": [
 				{
@@ -1071,10 +1137,10 @@
 			]
 		},
 		{
-			"id": "4c8298be-61b3-408e-9d6b-dcabf3b8cd7b",
-			"name": "2.2 delete unknown group",
-			"url": "http://localhost:8080/GroupManagement-1.0/resource/group/delete?id=10",
-			"time": 54,
+			"id": "b0dc8548-5a3c-419b-9e40-49f857106934",
+			"name": "2.2 delete unknown student",
+			"url": "http://localhost:8080/GroupManagement-1.0/resource/student/delete?id=1000",
+			"time": 7,
 			"responseCode": {
 				"code": 410,
 				"name": "Gone"
@@ -1089,7 +1155,7 @@
 				}
 			},
 			"times": [
-				54
+				7
 			],
 			"allTests": [
 				{
@@ -1098,10 +1164,10 @@
 			]
 		},
 		{
-			"id": "bfd72de0-5b6c-433f-bea5-e2e0daeb4d7d",
-			"name": "2.3 update unknown group",
-			"url": "http://localhost:8080/GroupManagement-1.0/resource/group/update",
-			"time": 20,
+			"id": "e83f85bc-a5ee-48dc-ba7d-22287d376c34",
+			"name": "2.3 update unknown student",
+			"url": "http://localhost:8080/GroupManagement-1.0/resource/student/update",
+			"time": 18,
 			"responseCode": {
 				"code": 410,
 				"name": "Gone"
@@ -1116,7 +1182,7 @@
 				}
 			},
 			"times": [
-				20
+				18
 			],
 			"allTests": [
 				{
@@ -1125,10 +1191,10 @@
 			]
 		},
 		{
-			"id": "df18b2fb-cf84-4d62-88b2-b11e582ef724",
-			"name": "2.4 create group with unknown teacher",
-			"url": "http://localhost:8080/GroupManagement-1.0/resource/group/create",
-			"time": 22,
+			"id": "9412434a-b7d3-4a50-a3c2-4a4c1d97c868",
+			"name": "2.4 create student with unknown group",
+			"url": "http://localhost:8080/GroupManagement-1.0/resource/student/create",
+			"time": 10,
 			"responseCode": {
 				"code": 400,
 				"name": "Bad Request"
@@ -1143,7 +1209,7 @@
 				}
 			},
 			"times": [
-				22
+				10
 			],
 			"allTests": [
 				{
@@ -1152,9 +1218,252 @@
 			]
 		},
 		{
-			"id": "b340c9b6-5d1a-4499-a78b-23c4aba1ec87",
-			"name": "2.5 update group with unknown teacher",
-			"url": "http://localhost:8080/GroupManagement-1.0/resource/group/update",
+			"id": "2630f3d1-37f7-4d0d-9915-c6706943082d",
+			"name": "2.5 update student with unknown group",
+			"url": "http://localhost:8080/GroupManagement-1.0/resource/student/update",
+			"time": 120,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				120
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "d14e9f23-aa17-4b5c-a7a1-c0bad122fb4a",
+			"name": "3.1 create student with a to long firstName",
+			"url": "http://localhost:8080/GroupManagement-1.0/resource/student/create",
+			"time": 77,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				77
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "da9e62f7-48cd-42c5-a617-840d44c8dbe8",
+			"name": "3.2 create student with a to short firstName",
+			"url": "http://localhost:8080/GroupManagement-1.0/resource/student/create",
+			"time": 11,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				11
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "30987820-a338-40c8-968a-50fa74637d2e",
+			"name": "3.3 create student with a to long lastName",
+			"url": "http://localhost:8080/GroupManagement-1.0/resource/student/create",
+			"time": 11,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				11
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "3b25688e-9c3e-4e08-b24f-14602a2e4144",
+			"name": "3.4 create student with a to short lastName",
+			"url": "http://localhost:8080/GroupManagement-1.0/resource/student/create",
+			"time": 10,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				10
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "05165237-98e6-48f0-b6a4-d9a6da1afeec",
+			"name": "3.5 create student with a to early birthdate",
+			"url": "http://localhost:8080/GroupManagement-1.0/resource/student/create",
+			"time": 14,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				14
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "b86c3842-b0aa-4052-a0c6-f4f1c5381b8e",
+			"name": "3.6 create student with a birhtdate in the Future",
+			"url": "http://localhost:8080/GroupManagement-1.0/resource/student/create",
+			"time": 19,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				19
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "9b90a3d0-14a2-4d8d-ae2b-ba341055ad6d",
+			"name": "3.7 create student with a formally wrong birhtdate",
+			"url": "http://localhost:8080/GroupManagement-1.0/resource/student/create",
+			"time": 13,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				13
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "84c725ae-7c8e-4aa7-9f93-f736782f126e",
+			"name": "3.8 create student with a formally wrong phoneNumber",
+			"url": "http://localhost:8080/GroupManagement-1.0/resource/student/create",
+			"time": 14,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				14
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "c3e9b1dc-b890-42f9-a752-b1499b3565bb",
+			"name": "3.9 create student with a to little groupID",
+			"url": "http://localhost:8080/GroupManagement-1.0/resource/student/create",
 			"time": 26,
 			"responseCode": {
 				"code": 400,
@@ -1179,10 +1488,10 @@
 			]
 		},
 		{
-			"id": "0a6e9bf8-f26e-49c4-956c-cb1e9b3b17c6",
-			"name": "3.1 create group with a to short title",
-			"url": "http://localhost:8080/GroupManagement-1.0/resource/group/create",
-			"time": 30,
+			"id": "a82a06e1-bf55-47eb-8911-45ad5c5d2c9f",
+			"name": "3.10 create student with a formally wrong groupID",
+			"url": "http://localhost:8080/GroupManagement-1.0/resource/student/create",
+			"time": 46,
 			"responseCode": {
 				"code": 400,
 				"name": "Bad Request"
@@ -1197,7 +1506,7 @@
 				}
 			},
 			"times": [
-				30
+				46
 			],
 			"allTests": [
 				{
@@ -1206,9 +1515,264 @@
 			]
 		},
 		{
-			"id": "ebf60380-97dc-4740-8cfc-9d0047016944",
-			"name": "3.2 create group with a to long title",
-			"url": "http://localhost:8080/GroupManagement-1.0/resource/group/create",
+			"id": "6d454dd4-e420-4936-b0e1-83276db651bf",
+			"name": "1.1 list teachers",
+			"url": "http://localhost:8080/GroupManagement-1.0/resource/teacher/list",
+			"time": 43,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status test": true,
+				"validate response": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				},
+				"validate response": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				43
+			],
+			"allTests": [
+				{
+					"Status test": true,
+					"validate response": true
+				}
+			]
+		},
+		{
+			"id": "8a44e8e9-54af-4909-893a-f86a59fc9992",
+			"name": "1.2 read valid teacher",
+			"url": "http://localhost:8080/GroupManagement-1.0/resource/teacher/read?id=2",
+			"time": 23,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status test": true,
+				"validate response": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				},
+				"validate response": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				23
+			],
+			"allTests": [
+				{
+					"Status test": true,
+					"validate response": true
+				}
+			]
+		},
+		{
+			"id": "9f4c86b5-d5af-4ea1-beec-cab56f7b8651",
+			"name": "1.3 create valid teacher",
+			"url": "http://localhost:8080/GroupManagement-1.0/resource/teacher/create",
+			"time": 13,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				13
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "7bb17822-3ed8-4c63-a2b5-38b0a1f9b35c",
+			"name": "1.4 delete valid teacher",
+			"url": "http://localhost:8080/GroupManagement-1.0/resource/teacher/delete?id=1",
+			"time": 12,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				12
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "0a4564df-040e-403d-8fde-597333f27eff",
+			"name": "1.5 update valid teacher",
+			"url": "http://localhost:8080/GroupManagement-1.0/resource/teacher/update",
+			"time": 17,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				17
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "84153ba0-54f6-4be9-9c01-6551f9f2469f",
+			"name": "2.1 read unknown teacher",
+			"url": "http://localhost:8080/GroupManagement-1.0/resource/teacher/read?id=10",
+			"time": 38,
+			"responseCode": {
+				"code": 410,
+				"name": "Gone"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				38
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "0bfd550b-2d95-4a67-8bef-76141ed64efe",
+			"name": "2.2 delete unknown teacher",
+			"url": "http://localhost:8080/GroupManagement-1.0/resource/teacher/delete?id=10",
+			"time": 9,
+			"responseCode": {
+				"code": 410,
+				"name": "Gone"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				9
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "83b22d4f-6b73-4dde-a548-ab5fd736c877",
+			"name": "2.3 update unknown teacher",
+			"url": "http://localhost:8080/GroupManagement-1.0/resource/teacher/update",
+			"time": 8,
+			"responseCode": {
+				"code": 410,
+				"name": "Gone"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				8
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "0c6284d3-4958-44a5-b8c7-a721cda29f77",
+			"name": "3.1 create teacher with a to long firstName",
+			"url": "http://localhost:8080/GroupManagement-1.0/resource/teacher/create",
+			"time": 13,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				13
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "6ada4521-b254-4e06-8f82-44270cb31628",
+			"name": "3.2 create teacher with a to short firstName",
+			"url": "http://localhost:8080/GroupManagement-1.0/resource/teacher/create",
 			"time": 18,
 			"responseCode": {
 				"code": 400,
@@ -1233,10 +1797,10 @@
 			]
 		},
 		{
-			"id": "dc451724-1da6-4162-9f3b-791ac2d70fcc",
-			"name": "3.3 create group with a to short description",
-			"url": "http://localhost:8080/GroupManagement-1.0/resource/group/create",
-			"time": 31,
+			"id": "1da1e0f3-af04-424f-8d06-343ea2a83c37",
+			"name": "3.3 create teacher with a to long lastName",
+			"url": "http://localhost:8080/GroupManagement-1.0/resource/teacher/create",
+			"time": 55,
 			"responseCode": {
 				"code": 400,
 				"name": "Bad Request"
@@ -1251,7 +1815,7 @@
 				}
 			},
 			"times": [
-				31
+				55
 			],
 			"allTests": [
 				{
@@ -1260,10 +1824,10 @@
 			]
 		},
 		{
-			"id": "fa72104c-b81b-4c68-918d-3a0a6d382725",
-			"name": "3.4 create group with a to long description",
-			"url": "http://localhost:8080/GroupManagement-1.0/resource/group/create",
-			"time": 37,
+			"id": "611899ce-b529-4287-8a72-156a78ed079e",
+			"name": "3.4 create teacher with a to short lastName",
+			"url": "http://localhost:8080/GroupManagement-1.0/resource/teacher/create",
+			"time": 28,
 			"responseCode": {
 				"code": 400,
 				"name": "Bad Request"
@@ -1278,7 +1842,7 @@
 				}
 			},
 			"times": [
-				37
+				28
 			],
 			"allTests": [
 				{
@@ -1287,10 +1851,238 @@
 			]
 		},
 		{
-			"id": "9504fb1d-8253-4e65-afb3-bed372619d87",
-			"name": "3.5 create group with a to small graduationYear",
+			"id": "a5d07267-d8f1-4d55-8d21-8bdb1af673a6",
+			"name": "1.1 list groups",
+			"url": "http://localhost:8080/GroupManagement-1.0/resource/group/list",
+			"time": 22,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status test": true,
+				"validate response": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				},
+				"validate response": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				22
+			],
+			"allTests": [
+				{
+					"Status test": true,
+					"validate response": true
+				}
+			]
+		},
+		{
+			"id": "2a82c4ee-1261-45d9-a967-e7b82ded2980",
+			"name": "1.2 read valid group",
+			"url": "http://localhost:8080/GroupManagement-1.0/resource/group/read?id=2",
+			"time": 10,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status test": true,
+				"validate response": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				},
+				"validate response": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				10
+			],
+			"allTests": [
+				{
+					"Status test": true,
+					"validate response": true
+				}
+			]
+		},
+		{
+			"id": "c1f618c5-bc1b-4c35-b0e5-f198b8db466a",
+			"name": "1.3 create valid group",
 			"url": "http://localhost:8080/GroupManagement-1.0/resource/group/create",
-			"time": 49,
+			"time": 18,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				18
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "57e9db6f-502c-4529-b350-059ad919f5d8",
+			"name": "1.4 delete valid group",
+			"url": "http://localhost:8080/GroupManagement-1.0/resource/group/delete?id=2",
+			"time": 16,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				16
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "9f7c581c-1c7b-4554-b587-3a047f5b8025",
+			"name": "1.5 update valid group",
+			"url": "http://localhost:8080/GroupManagement-1.0/resource/group/update",
+			"time": 22,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				22
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "ee6b09b8-5be8-4519-b154-2341bcc5e242",
+			"name": "2.1 read unknown group",
+			"url": "http://localhost:8080/GroupManagement-1.0/resource/group/read?id=10",
+			"time": 6,
+			"responseCode": {
+				"code": 410,
+				"name": "Gone"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				6
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "4c8298be-61b3-408e-9d6b-dcabf3b8cd7b",
+			"name": "2.2 delete unknown group",
+			"url": "http://localhost:8080/GroupManagement-1.0/resource/group/delete?id=10",
+			"time": 13,
+			"responseCode": {
+				"code": 410,
+				"name": "Gone"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				13
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "bfd72de0-5b6c-433f-bea5-e2e0daeb4d7d",
+			"name": "2.3 update unknown group",
+			"url": "http://localhost:8080/GroupManagement-1.0/resource/group/update",
+			"time": 13,
+			"responseCode": {
+				"code": 410,
+				"name": "Gone"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				13
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "df18b2fb-cf84-4d62-88b2-b11e582ef724",
+			"name": "2.4 create group with unknown teacher",
+			"url": "http://localhost:8080/GroupManagement-1.0/resource/group/create",
+			"time": 15,
 			"responseCode": {
 				"code": 400,
 				"name": "Bad Request"
@@ -1305,7 +2097,7 @@
 				}
 			},
 			"times": [
-				49
+				15
 			],
 			"allTests": [
 				{
@@ -1314,8 +2106,35 @@
 			]
 		},
 		{
-			"id": "215dbb50-5bc2-4dce-acad-885575526c93",
-			"name": "3.6 create group with a to big graduationYear",
+			"id": "b340c9b6-5d1a-4499-a78b-23c4aba1ec87",
+			"name": "2.5 update group with unknown teacher",
+			"url": "http://localhost:8080/GroupManagement-1.0/resource/group/update",
+			"time": 25,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				25
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "0a6e9bf8-f26e-49c4-956c-cb1e9b3b17c6",
+			"name": "3.1 create group with a to short title",
 			"url": "http://localhost:8080/GroupManagement-1.0/resource/group/create",
 			"time": 44,
 			"responseCode": {
@@ -1341,10 +2160,10 @@
 			]
 		},
 		{
-			"id": "980de2a2-57dc-45c2-b24d-d2d25d15e09f",
-			"name": "3.7 create group with a formally wrong graduationYear",
+			"id": "ebf60380-97dc-4740-8cfc-9d0047016944",
+			"name": "3.2 create group with a to long title",
 			"url": "http://localhost:8080/GroupManagement-1.0/resource/group/create",
-			"time": 73,
+			"time": 14,
 			"responseCode": {
 				"code": 400,
 				"name": "Bad Request"
@@ -1359,7 +2178,7 @@
 				}
 			},
 			"times": [
-				73
+				14
 			],
 			"allTests": [
 				{
@@ -1368,8 +2187,35 @@
 			]
 		},
 		{
-			"id": "682a7166-81b3-4af5-86b7-73d8229f1cb8",
-			"name": "3.8 create group with a to small teacherID",
+			"id": "dc451724-1da6-4162-9f3b-791ac2d70fcc",
+			"name": "3.3 create group with a to short description",
+			"url": "http://localhost:8080/GroupManagement-1.0/resource/group/create",
+			"time": 16,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				16
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "fa72104c-b81b-4c68-918d-3a0a6d382725",
+			"name": "3.4 create group with a to long description",
 			"url": "http://localhost:8080/GroupManagement-1.0/resource/group/create",
 			"time": 39,
 			"responseCode": {
@@ -1395,10 +2241,10 @@
 			]
 		},
 		{
-			"id": "bae27a81-42ef-44f6-ab7b-2890ee451946",
-			"name": "3.9 create group with a formally wrong teacherID",
+			"id": "9504fb1d-8253-4e65-afb3-bed372619d87",
+			"name": "3.5 create group with a to small graduationYear",
 			"url": "http://localhost:8080/GroupManagement-1.0/resource/group/create",
-			"time": 84,
+			"time": 23,
 			"responseCode": {
 				"code": 400,
 				"name": "Bad Request"
@@ -1413,7 +2259,115 @@
 				}
 			},
 			"times": [
-				84
+				23
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "215dbb50-5bc2-4dce-acad-885575526c93",
+			"name": "3.6 create group with a to big graduationYear",
+			"url": "http://localhost:8080/GroupManagement-1.0/resource/group/create",
+			"time": 22,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				22
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "980de2a2-57dc-45c2-b24d-d2d25d15e09f",
+			"name": "3.7 create group with a formally wrong graduationYear",
+			"url": "http://localhost:8080/GroupManagement-1.0/resource/group/create",
+			"time": 23,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				23
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "682a7166-81b3-4af5-86b7-73d8229f1cb8",
+			"name": "3.8 create group with a to small teacherID",
+			"url": "http://localhost:8080/GroupManagement-1.0/resource/group/create",
+			"time": 11,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				11
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "bae27a81-42ef-44f6-ab7b-2890ee451946",
+			"name": "3.9 create group with a formally wrong teacherID",
+			"url": "http://localhost:8080/GroupManagement-1.0/resource/group/create",
+			"time": 26,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				26
 			],
 			"allTests": [
 				{
@@ -1425,7 +2379,7 @@
 			"id": "e6a421ee-8eb9-4b0e-918a-6ff4d4e5a9e6",
 			"name": "0.1 Testservice",
 			"url": "http://localhost:8080/GroupManagement-1.0/resource/test/test",
-			"time": 107,
+			"time": 22,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -1440,7 +2394,7 @@
 				}
 			},
 			"times": [
-				107
+				22
 			],
 			"allTests": [
 				{
@@ -1452,7 +2406,7 @@
 			"id": "4a583627-972a-4eba-ab45-97a000dd56b2",
 			"name": "0.2 restore",
 			"url": "http://localhost:8080/GroupManagement-1.0/resource/test/restore",
-			"time": 75,
+			"time": 10,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -1467,7 +2421,7 @@
 				}
 			},
 			"times": [
-				75
+				10
 			],
 			"allTests": [
 				{
@@ -1477,9 +2431,145 @@
 		}
 	],
 	"count": 1,
-	"totalTime": 7808,
+	"totalTime": 2286,
 	"collection": {
 		"requests": [
+			{
+				"id": "fa19ef73-7190-4c7a-9038-a0b200aead7b",
+				"method": "POST"
+			},
+			{
+				"id": "2213001c-cce4-4fef-b8ca-38e31a113546",
+				"method": "GET"
+			},
+			{
+				"id": "872b9755-668a-45b9-b727-2c756a2e52ff",
+				"method": "GET"
+			},
+			{
+				"id": "3860f5b8-2cb8-4982-a050-83fb4fa3a070",
+				"method": "POST"
+			},
+			{
+				"id": "968774fc-132e-44b0-a1fb-68e42ea241ae",
+				"method": "DELETE"
+			},
+			{
+				"id": "03c0e493-abbd-43c4-885f-a9b2ab02b377",
+				"method": "PUT"
+			},
+			{
+				"id": "98ebc11c-c78b-42f9-864b-dbf0101f8f8e",
+				"method": "GET"
+			},
+			{
+				"id": "c7b43e32-709a-467b-8ecd-51cc395a97f9",
+				"method": "GET"
+			},
+			{
+				"id": "f841bb34-cc51-494e-aac6-db7e13b41e60",
+				"method": "POST"
+			},
+			{
+				"id": "f1c6d3b6-7245-48b0-8a5b-34aadb04c23a",
+				"method": "DELETE"
+			},
+			{
+				"id": "2658cdca-a028-4b14-be46-d8d49a5f6783",
+				"method": "PUT"
+			},
+			{
+				"id": "cdb57c7b-349d-45a4-b2a5-928be749bced",
+				"method": "GET"
+			},
+			{
+				"id": "be61fd2e-c7d9-4713-b17f-2ca535105133",
+				"method": "GET"
+			},
+			{
+				"id": "5a0b33d4-52f2-4be8-9d4b-03cc8a83e045",
+				"method": "POST"
+			},
+			{
+				"id": "c6916d74-2e35-41cf-8498-039eefa5d305",
+				"method": "DELETE"
+			},
+			{
+				"id": "f86585bc-61c9-48a0-b280-85eee7ec0c09",
+				"method": "PUT"
+			},
+			{
+				"id": "70c74520-6f33-4348-ae11-4ef5de84b935",
+				"method": "POST"
+			},
+			{
+				"id": "18b003a8-0ec6-4559-bb5e-391331b8b3ff",
+				"method": "DELETE"
+			},
+			{
+				"id": "16523f91-f3a0-45a3-aed9-bb8d6704c30e",
+				"method": "GET"
+			},
+			{
+				"id": "55c88493-f973-4efe-9c0a-34e4c53b4a3a",
+				"method": "GET"
+			},
+			{
+				"id": "98038f15-11c8-443b-a80b-7a8bf15bfa2f",
+				"method": "POST"
+			},
+			{
+				"id": "b8178aea-947c-4073-81e1-d308dcf75270",
+				"method": "DELETE"
+			},
+			{
+				"id": "dbfda610-2d6b-4a66-90bb-666cb7bc8872",
+				"method": "PUT"
+			},
+			{
+				"id": "99a40954-6fb2-4e99-9368-c6c98e0b5e9d",
+				"method": "GET"
+			},
+			{
+				"id": "215534f0-66b5-4b4c-88c0-0baaa111de23",
+				"method": "GET"
+			},
+			{
+				"id": "e41692b6-f926-4743-9e0f-4295ecafd270",
+				"method": "POST"
+			},
+			{
+				"id": "aabca03d-f0ac-4eae-bdd2-3879d4198641",
+				"method": "DELETE"
+			},
+			{
+				"id": "5723c898-5000-4ff0-a777-ca874c3c18af",
+				"method": "PUT"
+			},
+			{
+				"id": "181bc081-ea45-429a-86eb-a47d04095fb8",
+				"method": "GET"
+			},
+			{
+				"id": "25a7bf91-d6f4-42a0-93cb-e52e798b4364",
+				"method": "GET"
+			},
+			{
+				"id": "f291cdae-5cca-4470-b2f8-cfef80c9fba5",
+				"method": "POST"
+			},
+			{
+				"id": "a0acd1a0-cc76-4691-be0f-d22743ceda12",
+				"method": "DELETE"
+			},
+			{
+				"id": "f2226a5e-a771-4253-8f59-e383b46923dc",
+				"method": "PUT"
+			},
+			{
+				"id": "844c1acc-eab6-45ba-b4aa-5c67e9a967a6",
+				"method": "POST"
+			},
 			{
 				"id": "0f2db274-8e84-4dea-a45d-9ead451055be",
 				"method": "GET"
